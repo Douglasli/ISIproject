@@ -68,7 +68,7 @@
                     <td class="auto-style25">  
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  Font-Size="12px" Width="591px" CellPadding="4" ForeColor="#333333" GridLines="None"  
             OnRowDeleting="GridView1_RowDeleting" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand"  
-            OnRowEditing="GridView1_RowEditing">  
+            OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">  
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />  
           <Columns>  
               
