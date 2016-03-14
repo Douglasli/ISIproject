@@ -15,13 +15,14 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            Label2.Text = Session["username"].ToString();
+            Button1.Text = Session["username"].ToString();
         }
     }
 
-    protected void Login_Click(object sender, EventArgs e)
+    protected void Logout_Click(object sender, EventArgs e)
     {
         Session["username"] = null;
         Response.Redirect("Homepage.aspx");
     }
+
 }
