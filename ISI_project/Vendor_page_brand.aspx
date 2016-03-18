@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendor_page - Copy (2).aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendor_page_brand.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -57,6 +57,8 @@
         <br />
         <br />
         <br />
+        <asp:GridView ID="GridView1" runat="server" Height="212px" Width="435px">
+        </asp:GridView>
         </div>
     </form>
 </body>

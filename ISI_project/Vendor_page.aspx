@@ -79,6 +79,9 @@
         <hr />
         <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search" Width="73px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="Button2" runat="server" Height="35px" OnClick="Button2_Click" Text="Show all brand" Width="158px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />
         <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
