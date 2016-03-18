@@ -1,11 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendor_Page.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Searchresult.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
-<script runat="server">
-
-    
-</script>
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -27,20 +22,21 @@
         .auto-style24 {
             height: 43px;
         }
+        #Text1 {
+            width: 89px;
+            height: 27px;
+        }
         </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            for (var i = 2; i < 6 && i < $("#div1 tr").length - 1; i++) {
+            for (var i = 2; i < 6 || i < $("#div1 tr").length - 1; i++) {
 
-                var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html();
+                var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(4)").html();
                 
                 var img1 = $("<img src =" + url + " style='width:150px;height:150px;'/>");
 
-                $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html(img1);
-                $("#div1 tr:nth-child(" + i + ") td:nth-child(2)").attr
-                ("onclick", "javascript:window.location.href='product_detail_vender.aspx?id=" + $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");
-                
+                $("#div1 tr:nth-child(" + i + ") td:nth-child(4)").html(img1);
             }
         
         }
@@ -48,7 +44,7 @@
 
     </script>
     </head>
-<body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image:url('/images/backlogin.jpg'); height: 565px;" >
     <form id="form1" runat="server">
     <div style="width:100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
         <table style="width:100%; height: 100%;">
@@ -78,20 +74,18 @@
     <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
         <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search" Width="73px" />
+        <asp:Button ID="Button1" runat="server" Height="36px" Text="search" Width="73px" />
         <br />
-        <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />
-        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
+        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" OnPageIndexChanging="GridView1_PageIndexChanging" AllowPaging="True" PageSize="4">
         </asp:GridView>
-        <asp:Button ID="pre" runat="server" Height="30px"  Text="Previous Page" Width="150px" OnClick="pre_Click" />
+        <asp:Button ID="Button3" runat="server" Height="30px" OnClick="Button3_Click" Text="Previous Page" Width="150px" />
 &nbsp;&nbsp;
-        <asp:Button ID="next" runat="server" Height="30px"  Text="Next Page" Width="150px" OnClick="next_Click" />
+        <asp:Button ID="Button4" runat="server" Height="30px" OnClick="Button4_Click" Text="Next Page" Width="150px" />
         <br />
         <br />
         <asp:Label ID="Label1" runat="server" Text="Go to a specific page : "></asp:Label>
         <asp:TextBox ID="TextBox2" runat="server" Height="24px" Width="81px"> </asp:TextBox>
-        <asp:Button ID="tospe" runat="server" Height="32px"  Text="Go!" Width="56px" OnClick="tospe_Click" />
-        <br />
+        <asp:Button ID="Button2" runat="server" Height="32px" OnClick="Button2_Click" Text="Go!" Width="56px" />
         <br />
         </div>
     </form>

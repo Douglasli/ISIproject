@@ -14,19 +14,17 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Session["username"] == null)
         {
-            Response.Redirect("Homepage.aspx");
+            Response.Redirect("Login_Page.aspx");
         }
         else
         {
             Button1.Text = Session["username"].ToString();
 
-            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
-            if (!IsPostBack)
-            {
-                bind();
-            }
+            bind();
+
 
         }
     }
@@ -58,13 +56,12 @@ public partial class _Default : System.Web.UI.Page
         GridViewRow gvr = GridView1.Rows[e.RowIndex];
         string quantity = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim();
 
-        string sql = "update cart set quantity='" + quantity + "' where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+        string sql = "update student set quantiy='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
         System.Diagnostics.Debug.Write(sql);
         MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
         mySqlCmd.ExecuteNonQuery();
         bind();
     }
-    
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         GridView1.EditIndex = -1;
@@ -90,6 +87,7 @@ public partial class _Default : System.Web.UI.Page
                 GridView1.DataSource = dt;
               GridView1.DataKeyNames = new string[] { "name" };
                 GridView1.DataBind();
+                
             }
         }
 
@@ -103,7 +101,7 @@ public partial class _Default : System.Web.UI.Page
         string sql2 = "Insert into Orderitem(poNum,itemid,quantity) values ((SELECT poNum from orders where username = '" + Session["username"].ToString() + "' ),(SELECT itemid,quantity from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "')));";
         MySqlCommand cmd2 = new MySqlCommand(sql2, mySqlConn);
         cmd2.ExecuteNonQuery();
-        string sql3 = "DELETE FROM cart where uid = (Select user_id from user where username='" + Session["username"].ToString() +"')";
+        string sql3 = "DELETE FROM cart where uid =user_id from user where username='" + Session["username"].ToString() +"'";
         MySqlCommand cmd3 = new MySqlCommand(sql3, mySqlConn);
         cmd3.ExecuteNonQuery();
     }

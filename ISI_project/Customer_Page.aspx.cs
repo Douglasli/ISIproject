@@ -12,19 +12,28 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
-        String uid = "u001";
+        if (Session["username"] == null)
+        {
+            Response.Redirect("Login_Page.aspx");
+        }
+        else
+        {
+            String username = Session["username"].ToString();
 
-        string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
-        mySqlConn = new MySqlConnection(connStr);
-        mySqlConn.Open();
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+            mySqlConn = new MySqlConnection(connStr);
+            mySqlConn.Open();
 
-        bind(uid);
+            bind(username);
+        }
+        
+
     }
 
-    public void bind(String uid)
+    public void bind(String username)
     {
 
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select User_id,Username,First_name,Last_name,email,address,Type from user where User_id=" + "'" + uid+"'", mySqlConn);
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select User_id,Username,First_name,Last_name,email,address,Type from user where Username=" + "'" + username+"'", mySqlConn);
         DataSet dataset = new DataSet();
 
 

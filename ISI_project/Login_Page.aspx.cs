@@ -14,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
-        string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
+        string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
         mySqlConn = new MySqlConnection(connStr);
         mySqlConn.Open();
     }
@@ -29,6 +29,8 @@ public partial class _Default : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@paw", hashed);
         object obj ;
         obj = cmd.ExecuteScalar();
+
+
         if (obj != null)
         {
             Session["username"] = TextBox1.Text;

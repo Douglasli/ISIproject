@@ -36,22 +36,34 @@ public partial class _Default : System.Web.UI.Page
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.shipDate,orders.shipAddress,user.Username,orders.status from orders,user where user.Username=" + "'" + username + "'and user.User_id=orders.uid", mySqlConn);
         DataSet dataset = new DataSet();
 
-
         DataAdapter1.Fill(dataset, "isi");
 
         String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
-        String pdate = dataset.Tables[0].Rows[0]["purchaseDate"].ToString();
-        String sdate = dataset.Tables[0].Rows[0]["shipDate"].ToString();
-        String saddr = dataset.Tables[0].Rows[0]["shipAddress"].ToString();
-        String uname = dataset.Tables[0].Rows[0]["Username"].ToString();
-        String status = dataset.Tables[0].Rows[0]["status"].ToString();
 
-        Label1.Text = poNo;
-        Label2.Text = pdate;
-        Label3.Text = sdate;
-        Label4.Text = saddr;
-        Label5.Text = status;
-        Label6.Text = uname;
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price from orderitem,item where poNum=" + "'" + poNo + "'and item.itemid=orderitem.itemid", mySqlConn);
+        DataSet dataset2 = new DataSet();
 
+        DataAdapter2.Fill(dataset2, "isi");
+
+        GridView1.DataSource = dataset;
+        GridView1.DataKeyNames = new string[] { "poNum" };
+        GridView1.DataBind();
+
+        GridView2.DataSource = dataset2;
+        GridView2.DataKeyNames = new string[] { "poNum" };
+        GridView2.DataBind();
+
+        double total = 0;
+
+        for (int i = 0; i < dataset2.Tables[0].Rows.Count; i++)
+        {
+            double subtotal = 0;
+            int quantity = int.Parse(dataset2.Tables[0].Rows[i]["quantity"].ToString());
+            double price = Double.Parse(dataset2.Tables[0].Rows[i]["price"].ToString());
+            subtotal = price * quantity;
+            total = total + subtotal;
+
+        }
+        Label1.Text = total.ToString();
     }
 }
