@@ -98,7 +98,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style25" style="text-align: right">
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Button" />
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Check out" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
