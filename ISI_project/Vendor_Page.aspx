@@ -1,6 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Addnewproduct.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendor_Page.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+    
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -23,6 +28,25 @@
             height: 43px;
         }
         </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            for (var i = 2; i < 6 && i < $("#div1 tr").length - 1; i++) {
+
+                var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html();
+                
+                var img1 = $("<img src =" + url + " style='width:150px;height:150px;'/>");
+
+                $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html(img1);
+                $("#div1 tr:nth-child(" + i + ") td:nth-child(2)").attr
+                ("onclick", "javascript:window.location.href='product_detail_vender.aspx?id=" + $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");
+                
+            }
+        
+        }
+        );
+
+    </script>
     </head>
 <body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
     <form id="form1" runat="server">
@@ -51,49 +75,27 @@
         </table>
 
         </div>
-    <div style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
+        <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search" Width="73px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="Button2" runat="server" Height="35px" OnClick="Button2_Click" Text="Show all brand" Width="158px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />
+        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
+        </asp:GridView>
+        <asp:Button ID="pre" runat="server" Height="30px"  Text="Previous Page" Width="150px" OnClick="pre_Click" />
+&nbsp;&nbsp;
+        <asp:Button ID="next" runat="server" Height="30px"  Text="Next Page" Width="150px" OnClick="next_Click" />
         <br />
         <br />
+        <asp:Label ID="Label1" runat="server" Text="Go to a specific page : "></asp:Label>
+        <asp:TextBox ID="TextBox2" runat="server" Height="24px" Width="81px"> </asp:TextBox>
+        <asp:Button ID="tospe" runat="server" Height="32px"  Text="Go!" Width="56px" OnClick="tospe_Click" />
         <br />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Product Name :"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server" Height="21px" Width="145px"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="Label2" runat="server" Text="Product Brand :"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" Height="22px" Width="142px"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="Label3" runat="server" Text="Product Price :"></asp:Label>
-        <asp:TextBox ID="TextBox3" runat="server" Height="24px" Width="144px"></asp:TextBox>
-        <br />
-        <br />
-        <asp:Label ID="Label4" runat="server" Text="Thumbnail image: "></asp:Label>
-        <asp:FileUpload ID="FileUpload1" runat="server" Height="28px" Width="216px" />
-&nbsp;
-        <br />
-        <br />
-        <asp:Label ID="Label5" runat="server" Text="Detail Information: "></asp:Label>
-        <asp:TextBox ID="TextBox4" runat="server" Height="23px" Width="236px"></asp:TextBox>
-&nbsp;<asp:Label ID="Label6" runat="server" Text="Use ';' to seperate"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="Label7" runat="server" Text="Detail photo: "></asp:Label>
-        <asp:FileUpload ID="FileUpload2" runat="server" Height="25px" Width="300px" />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:FileUpload ID="FileUpload3" runat="server" Height="25px" Width="300px" />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:FileUpload ID="FileUpload4" runat="server" Height="25px" Width="300px" />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:FileUpload ID="FileUpload5" runat="server" Height="25px" Width="300px" />
-        <br />
-        <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button1" runat="server" Height="29px" OnClick="Button1_Click" Text="Submit" Width="63px" />
         </div>
     </form>
 </body>

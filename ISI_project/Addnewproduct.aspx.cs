@@ -12,7 +12,10 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection conn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connStr"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        if (Session["username"] == null || (string)Session["usertype"] != "vender")
+        {
+            Response.Redirect("Homepage.aspx?");
+        }
     }
 
 
@@ -74,5 +77,13 @@ public partial class _Default : System.Web.UI.Page
         cmd2.ExecuteNonQuery();
 
         conn.Close();
+
+        try
+        {
+            {
+                Response.Redirect("Vendor_Page.aspx");
+            }
+        }
+        catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
 }

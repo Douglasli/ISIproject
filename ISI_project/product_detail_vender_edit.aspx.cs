@@ -16,6 +16,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null || (string)Session["usertype"] != "vender")
+        {
+            Response.Redirect("Homepage.aspx?");
+        }
         if (!IsPostBack)
         {
             ViewState["count"] = (int)0;
