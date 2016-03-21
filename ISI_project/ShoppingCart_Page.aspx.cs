@@ -9,7 +9,7 @@ using System.Data;
 
 public partial class _Default : System.Web.UI.Page
 {
-    int n=0;
+    int n = 0;
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,13 +24,16 @@ public partial class _Default : System.Web.UI.Page
             string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
-            bind();
+            if (!IsPostBack)
+            {
+                bind();
+            }
 
 
         }
     }
 
-   
+
     protected void Logout_Click(object sender, EventArgs e)
     {
         Session["username"] = null;
@@ -38,8 +41,8 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        string sqlStr = "delete from cart where uid=(Select user_id from user where username='"+ Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
-       
+        string sqlStr = "delete from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+
         MySqlCommand mySqlCmd = new MySqlCommand(sqlStr, mySqlConn);
         mySqlCmd.ExecuteNonQuery();
         bind();
@@ -57,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
         GridViewRow gvr = GridView1.Rows[e.RowIndex];
         string quantity = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim();
 
-        string sql = "update student set quantiy='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+        string sql = "update cart set quantiy='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
         System.Diagnostics.Debug.Write(sql);
         MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
         mySqlCmd.ExecuteNonQuery();
@@ -77,7 +80,7 @@ public partial class _Default : System.Web.UI.Page
     }
     public void bind()
     {
-        string sql = "select item.name,cart.quantity,item.price,item.price*cart.quantity as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username="+"'"+Session["username"].ToString() +"')";
+        string sql = "select item.name,cart.quantity,item.price,item.price*cart.quantity as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username=" + "'" + Session["username"].ToString() + "')";
         MySqlCommand cmd = new MySqlCommand(sql, mySqlConn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
@@ -86,14 +89,14 @@ public partial class _Default : System.Web.UI.Page
             {
                 sda.Fill(dt);
                 GridView1.DataSource = dt;
-              GridView1.DataKeyNames = new string[] { "name" };
+                GridView1.DataKeyNames = new string[] { "name" };
                 GridView1.DataBind();
-                n=dt.Rows.Count;
+                n = dt.Rows.Count;
             }
         }
 
     }
-   
+
     protected void Button2_Click1(object sender, EventArgs e)
     {   //Insert data into orders table
         string sql1 = "Insert into Orders(purchaseDate,status,uid) values (NOW(),'pending',(" + "SELECT user_id from user where username = '" + Session["username"].ToString() + "'));";
@@ -104,21 +107,22 @@ public partial class _Default : System.Web.UI.Page
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql2, mySqlConn);
         DataSet dataset1 = new DataSet();
         DataAdapter1.Fill(dataset1, "isi");
-           
+
         //SELECT itemid
         string sql3 = "SELECT itemid,quantity from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "');";
         MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter(sql3, mySqlConn);
         DataSet dataset2 = new DataSet();
         DataAdapter2.Fill(dataset2, "isi");
         //insert into orderitem
-        for (int i = 0; i < n; i++) {
-            string sql5 = "INSERT into orderitem(ponum,itemid,quantity) values (" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "," + dataset2.Tables[0].Rows[i]["itemid"]+","+ dataset2.Tables[0].Rows[i]["quantity"] + ")";
+        for (int i = 0; i < n; i++)
+        {
+            string sql5 = "INSERT into orderitem(ponum,itemid,quantity) values (" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "," + dataset2.Tables[0].Rows[i]["itemid"] + "," + dataset2.Tables[0].Rows[i]["quantity"] + ")";
             MySqlCommand cmd5 = new MySqlCommand(sql5, mySqlConn);
             cmd5.ExecuteNonQuery();
         }
-  
+
         //DELECE SHOPPING CART
-        string sql4 = "DELETE FROM cart where uid = (SELECT user_id from user where username='" + Session["username"].ToString() +"')";
+        string sql4 = "DELETE FROM cart where uid = (SELECT user_id from user where username='" + Session["username"].ToString() + "')";
         MySqlCommand cmd4 = new MySqlCommand(sql4, mySqlConn);
         cmd4.ExecuteNonQuery();
         bind();
