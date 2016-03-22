@@ -135,4 +135,15 @@ public partial class _Default : System.Web.UI.Page
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            {
+                Response.Redirect("Vendor_page_order.aspx");
+            }
+        }
+        catch (Exception ex) { Response.Write("an error occur: " + ex); }
+    }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vendor_page_brand.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Vender_order_search.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -23,6 +23,19 @@
             height: 43px;
         }
         </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            for (var i = 2; i <= $("#d1 tr").length; i++) {
+                $("#d1 tr:nth-child(" + i + ") td:nth-child(1)").attr
+                ("onclick", "javascript:window.location.href='Vendor_order_process.aspx?poNum=" + $("#d1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");
+
+            }
+        
+        }
+        );
+
+    </script>
     </head>
 <body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
     <form id="form1" runat="server">
@@ -51,14 +64,22 @@
         </table>
 
         </div>
-    <div style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div id="d1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
+        <asp:TextBox ID="TextBox1" runat="server" Height="34px" Width="273px"></asp:TextBox>
+        <asp:Button ID="Button5" runat="server" Height="38px" OnClick="Button5_Click" Text="Search a P.O.Number" Width="204px" />
+        &nbsp;
+        <asp:Button ID="Button6" runat="server" Height="38px" OnClick="Button6_Click" Text="show vendor purchase order" Width="201px" />
         <br />
-        <asp:Button ID="Button6" runat="server" Height="41px" OnClick="Button6_Click" Text="show vendor purchase order" Width="293px" />
         <br />
         <br />
         <br />
-        <asp:GridView ID="GridView1" runat="server" Height="212px" Width="435px">
+        <asp:Button ID="Button1" runat="server" Height="33px" OnClick="Button1_Click" Text="show pending orders " Width="178px" />
+&nbsp;&nbsp;
+        <asp:Button ID="Button2" runat="server" Height="33px" OnClick="Button2_Click" Text="show orders on hold" Width="178px" />
+&nbsp;&nbsp;
+        <asp:Button ID="Button3" runat="server" Height="33px" OnClick="Button3_Click" Text="show past orders" Width="178px" />
+        <asp:GridView ID="GridView1" runat="server" Height="280px" Width="652px" style="margin-top: 40px">
         </asp:GridView>
         </div>
     </form>

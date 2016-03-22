@@ -45,4 +45,15 @@ public partial class _Default : System.Web.UI.Page
             Response.Write("An error occured: " + ex.Message);
         }
     }
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            {
+                Response.Redirect("Vendor_page_order.aspx");
+            }
+        }
+        catch (Exception ex) { Response.Write("an error occur: " + ex); }
+    }
 }

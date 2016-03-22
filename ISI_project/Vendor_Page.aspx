@@ -84,6 +84,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="Button6" runat="server" Height="42px" OnClick="Button6_Click" Text="show vendor purchase order" Width="211px" />
         <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
         </asp:GridView>
         <asp:Button ID="pre" runat="server" Height="30px"  Text="Previous Page" Width="150px" OnClick="pre_Click" />
