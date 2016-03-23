@@ -105,13 +105,13 @@ public partial class _Default : System.Web.UI.Page
                 Label15.Visible = false;
                 Label16.Visible = false;
                 break;
-            case "cancelled":
+            case "canceled":
                 Button1.Visible = false;
                 Button2.Visible = false;
                 Button3.Visible = false;
                 Button4.Visible = false;
                 Label13.Visible = true;
-                Label13.Text = "Cancelled Date :";
+                Label13.Text = "Canceled Date :";
                 Label14.Visible = true;
                 Label14.Text = cand;
                 Label15.Visible = true;
@@ -209,7 +209,7 @@ public partial class _Default : System.Web.UI.Page
         DateTime da = new DateTime();
         da = DateTime.Now;
         conn.Open();
-        string st = "update isi.orders set status='cancelled',canDate='"+da+"',canType='"+canType+"' where poNum= " + poNum;
+        string st = "update isi.orders set status='canceled',canDate='"+da+"',canType='"+canType+"' where poNum= " + poNum;
         MySqlCommand cmd1 = new MySqlCommand(st, conn);
         cmd1.ExecuteNonQuery();
         conn.Close();
