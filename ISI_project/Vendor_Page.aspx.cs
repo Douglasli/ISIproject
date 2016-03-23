@@ -136,7 +136,9 @@ public partial class _Default : System.Web.UI.Page
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
 
-    protected void Button6_Click(object sender, EventArgs e)
+    
+
+    protected void Button3_Click(object sender, EventArgs e)
     {
         try
         {
