@@ -40,7 +40,13 @@ public partial class _Default : System.Web.UI.Page
                     Session["username"] = TextBox1.Text;
                     Session["uid"] = dt.Rows[0]["User_id"];
                     Session["usertype"] = dt.Rows[0]["Type"];
-                    Response.Redirect("Homepageafterlogin.aspx");
+                    if (Request.QueryString["id"] == null)
+                    {
+                        Response.Redirect("Homepageafterlogin.aspx");
+                    }
+                    else {
+                        Response.Redirect("ProductDetail_page.aspx?id="+ Request.QueryString["id"]);
+                    }
         }
         else {
             lb1.Text = "invalid user name and password";

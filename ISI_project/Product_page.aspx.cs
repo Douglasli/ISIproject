@@ -45,27 +45,22 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        try
+        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE name LIKE '%"+ TextBox1.Text +"%'";
+        MySqlCommand cmd = new MySqlCommand(sql1, conn);
+        using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
+            sda.SelectCommand = cmd;
+            using (DataTable dt = new DataTable())
             {
-                Response.Redirect("Searchresult.aspx?poNum=" + TextBox1.Text);
+                sda.Fill(dt);
+                GridView1.DataSource = dt;
+                GridView1.DataKeyNames = new string[] { "name" };
+                GridView1.DataBind();
             }
         }
-        catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
 
 
-
-    protected void add_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            {
-                Response.Redirect("Addnewproduct.aspx");
-            }
-        }
-        catch (Exception ex) { Response.Write("an error occur: " + ex); }
-    }
 
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -171,7 +166,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        String sql1 = "SELECT name,brand,price,thumbnailimage FROM item WHERE brand = '" + TextBox3.Text + "'";
+        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE brand = '" + TextBox3.Text + "'";
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
@@ -188,7 +183,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        String sql1 = "SELECT name,brand,price,thumbnailimage FROM item";
+        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item";
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {

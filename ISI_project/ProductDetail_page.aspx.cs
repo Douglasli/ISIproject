@@ -39,11 +39,25 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        string sql = " insert into cart (itemid,uid,quantity) values ('" + id + "','" + Session["uid"].ToString() + "','1')";
-
-        MySqlCommand cmd2 = new MySqlCommand(sql, mySqlConn);
-        cmd2.ExecuteNonQuery();
-        Response.Redirect("ShoppingCart_Page.aspx");
+        if (Session["uid"] == null) {
+            Response.Redirect("Login_Page.aspx?id="+id);
+        }
+        string sql1 = "SELECT * from cart where itemid = '"+id+"' AND uid = '" + Session["uid"].ToString()+"' ";
+        MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
+        object obj;
+        obj = cmd1.ExecuteScalar();
+        if (obj != null)
+        {
+            Label5.Text = "This product is already in your cart.";
+        }
+        else
+        {
+            string sql = " insert into cart (itemid,uid,quantity) values ('" + id + "','" + Session["uid"].ToString() + "','1')";
+            MySqlCommand cmd2 = new MySqlCommand(sql, mySqlConn);
+            cmd2.ExecuteNonQuery();
+            Label5.Text = "OK";
+        }
+       
 
     }
 

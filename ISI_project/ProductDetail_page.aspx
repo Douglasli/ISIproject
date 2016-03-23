@@ -62,7 +62,7 @@
                 <td class="auto-style24" style="text-align: right">
                     <asp:button runat="server" id="Login" style="border: 0px solid #FFFFFF;width:80px;height:30px; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch';font-size: large;" Text="Login" PostBackUrl="~/Login_page.html"/></td>
                 <td class="auto-style24" style="text-align: left">
-                    <asp:button runat="server" id="Register" style="border: 0px solid #FFFFFF;width:80px;height:30px; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch';font-size: large;" Text="Register" PostBackUrl="~/Signup_page.html"/></td>
+                    <asp:button runat="server" id="Register" style="border: 0px solid #FFFFFF;width:80px;height:30px; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch';font-size: large;" Text="Register" PostBackUrl="~/Register_Page.aspx"/></td>
             </tr>
             </table>
                 </td>
@@ -108,6 +108,7 @@
             <tr>
                 <td class="style2">
                     <asp:Button ID="Button2" runat="server" Text="BUY" BorderStyle="None" Height="50px" Width="100px" Style="background-color: rgba(255,255,255,0.1);" Font-Bold="True" Font-Names="Arial" Font-Size="Large" OnClick="Button2_Click"/>
+                    <asp:Label ID="Label5" runat="server" Font-Size="XX-Large"></asp:Label>
                 </td>
             </tr>
             <tr>

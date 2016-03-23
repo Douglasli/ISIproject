@@ -137,7 +137,7 @@ public partial class _Default : System.Web.UI.Page
             MySqlCommand cmd4 = new MySqlCommand(sql4, mySqlConn);
             cmd4.ExecuteNonQuery();
             bind();
-  
-        
+
+            Response.Redirect("Purchase_Tracking_Page.aspx");
     }
 }

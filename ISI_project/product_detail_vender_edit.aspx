@@ -131,15 +131,15 @@
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Image ID="deimg1" runat="server" Height="320px" ImageAlign="Middle" Width="410px" />
-        <asp:Button ID="delete1" runat="server"  Text="Delete this photo" OnClick="delete1_Click" />
+        <asp:Button ID="delete1" runat="server"  Text="Delete this photo" OnClick="delete1_Click" Height="62px" Width="186px" />
         <asp:Image ID="deimg2" runat="server" Height="320px" ImageAlign="Middle" Width="410px" />
-        <asp:Button ID="delete2" runat="server" Text="Delete this photo" OnClick="delete2_Click" />
+        <asp:Button ID="delete2" runat="server" Text="Delete this photo" OnClick="delete2_Click" Height="62px" Width="168px" />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Image ID="deimg3" runat="server" Height="320px" ImageAlign="Middle" Width="410px" />
-        <asp:Button ID="delete3" runat="server" Text="Delete this photo" OnClick="delete3_Click" />
+        <asp:Button ID="delete3" runat="server" Text="Delete this photo" OnClick="delete3_Click" Height="62px" Width="168px" />
         <asp:Image ID="deimg4" runat="server" Height="320px" ImageAlign="Middle" Width="410px" />
-        <asp:Button ID="delete4" runat="server" Text="Delete this photo" OnClick="delete4_Click" />
+        <asp:Button ID="delete4" runat="server" Text="Delete this photo" OnClick="delete4_Click" Height="62px" Width="168px" />
         </div>
     </form>
 </body>
