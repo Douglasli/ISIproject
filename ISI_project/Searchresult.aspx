@@ -30,7 +30,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            for (var i = 2; i < 6 || i < $("#div1 tr").length - 1; i++) {
+            for (var i = 2; i < 6 || i <= $("#div1 tr").length; i++) {
 
                 var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(4)").html();
                 
