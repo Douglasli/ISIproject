@@ -73,7 +73,7 @@
         </div>
     <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
-        <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px" ></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Height="36px" Text="search" Width="73px" OnClick="Button1_Click" />
         <br />
         <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" OnPageIndexChanging="GridView1_PageIndexChanging" AllowPaging="True" PageSize="4">

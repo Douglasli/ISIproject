@@ -11,19 +11,26 @@ public partial class _Default : System.Web.UI.Page
 {
     DataSet dataset1 = new DataSet();
     MySqlConnection conn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connStr"].ConnectionString);
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["username"] == null || (string)Session["usertype"] != "vender")
         {
             Response.Redirect("Homepage.aspx?");
         }
-        if (!IsPostBack) { 
-        String poNum = Request.QueryString["poNum"];
-        TextBox1.Text = poNum;
+        if (!IsPostBack)
+        {
+            String poNum = Request.QueryString["poNum"];
+            TextBox1.Text = poNum;
 
-        CheckMySqlConnection(poNum);
+            CheckMySqlConnection(poNum);
         }
+        else
+        {
+            
+            CheckMySqlConnection(TextBox1.Text);
+        }
+        
         
     }
 
@@ -122,6 +129,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        
         try
         {
             {
@@ -130,4 +138,6 @@ public partial class _Default : System.Web.UI.Page
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
+
+    
 }
