@@ -80,7 +80,7 @@
         <br />
         <br />
         <asp:Label ID="Label7" runat="server" Text="Detail photo: "></asp:Label>
-        <asp:FileUpload ID="FileUpload2" runat="server" Height="25px" Width="300px" />
+        &nbsp;<asp:FileUpload ID="FileUpload2" runat="server" Height="25px" Width="300px" />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:FileUpload ID="FileUpload3" runat="server" Height="25px" Width="300px" />

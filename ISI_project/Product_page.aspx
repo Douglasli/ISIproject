@@ -29,7 +29,7 @@
         }
         </style>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
         $(document).ready(function () {
             for (var i = 2; i < 6 && i < $("#div1 tr").length - 1; i++) {
 
@@ -39,12 +39,12 @@
 
                 $("#div1 tr:nth-child(" + i + ") td:nth-child(4)").html(img1);
                 $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").attr
-                ("onclick", "javascript:window.location.href='product_detail.aspx?id=" + $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");   
+                ("onclick", "javascript:window.location.href='ProductDetail_page.aspx?id=" + $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");   
             }
         }
         );
 
-    </script>
+    </script>--%>
     </head>
 <body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
     <form id="form1" runat="server">
@@ -83,7 +83,10 @@
         &nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
-        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="true" onsorting="GridView2_Sorting"  OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
+        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" onsorting="GridView2_Sorting"  OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
+            <Columns>
+                <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Itemid" />
+            </Columns>
         </asp:GridView>
         <asp:Button ID="pre" runat="server" Height="30px"  Text="Previous Page" Width="150px" OnClick="pre_Click" />
 &nbsp;&nbsp;

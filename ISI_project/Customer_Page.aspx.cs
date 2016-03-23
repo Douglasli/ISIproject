@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
         {
             String username = Session["username"].ToString();
 
-            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
 

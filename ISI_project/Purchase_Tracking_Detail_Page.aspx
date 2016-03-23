@@ -80,7 +80,7 @@
 
         </div>
         <hr />
-    <div style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div style="width:100%;height: 1019px; background-color: rgba(255,255,255,0.5);">
         <br />
         <br />
         <br />
@@ -90,7 +90,7 @@
                     <td class="auto-style34">
                     <asp:button runat="server" id="User_Profile" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Customer_Page.aspx" Text="Profile"/></td>
                     <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;" colspan="2">
-                        <asp:GridView ID="GridView1" runat="server" Height="100%" Width="100%" >
+                        <asp:GridView ID="GridView1" runat="server" Height="60%" Width="73%" Font-Names="Arial" Font-Size="Medium" >
                         </asp:GridView>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -100,7 +100,7 @@
                     <td class="auto-style34">
                     <asp:button runat="server" id="Shopping_Cart" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/ShoppingCart_Page.aspx" Text="Shopping Cart"/></td>
                     <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;" colspan="2">
-                        <asp:GridView ID="GridView2" runat="server" Height="100%" Width="100%">
+                        <asp:GridView ID="GridView2" runat="server" Height="100%" Width="73%" Font-Bold="False" Font-Names="Arial" Font-Size="Medium">
                         </asp:GridView>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,15 +113,16 @@
                 </tr>
                 <tr>
                     <td class="auto-style31">
-                        &nbsp;</td>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Total:</td>
+                        </td>
+                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Total:</td>
                     <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp; 
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text="Label" style="text-align: left"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style33">&nbsp;</td>
-                    <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">&nbsp;</td>
+                    <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">
+                    <asp:button runat="server" id="Cancel_btn" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" Text="Cancel Order" OnClick="Cancel_btn_Click"/></td>
                     <td class="auto-style30" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left">&nbsp;</td>
                 </tr>
                 <tr>

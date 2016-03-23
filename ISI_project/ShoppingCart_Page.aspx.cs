@@ -19,9 +19,10 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
+            
             Button1.Text = Session["username"].ToString();
 
-            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
             if (!IsPostBack)
@@ -58,9 +59,9 @@ public partial class _Default : System.Web.UI.Page
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         GridViewRow gvr = GridView1.Rows[e.RowIndex];
-        string quantity = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim();
+        int quantity = int.Parse(((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim());
 
-        string sql = "update cart set quantiy='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+        string sql = "update cart set quantity='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
         System.Diagnostics.Debug.Write(sql);
         MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
         mySqlCmd.ExecuteNonQuery();
@@ -89,42 +90,54 @@ public partial class _Default : System.Web.UI.Page
             {
                 sda.Fill(dt);
                 GridView1.DataSource = dt;
+
                 GridView1.DataKeyNames = new string[] { "name" };
                 GridView1.DataBind();
                 n = dt.Rows.Count;
+                if (n != 0)
+                {
+                    Image1.Visible = false;
+                }
             }
         }
 
     }
 
     protected void Button2_Click1(object sender, EventArgs e)
-    {   //Insert data into orders table
-        string sql1 = "Insert into Orders(purchaseDate,status,uid) values (NOW(),'pending',(" + "SELECT user_id from user where username = '" + Session["username"].ToString() + "'));";
-        MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
-        cmd1.ExecuteNonQuery();
-        //SELECT ponumber
-        string sql2 = "SELECT MAX(poNum) AS poNum from orders where uid = (SELECT User_id from user WHERE username ='" + Session["username"].ToString() + "') AND purchaseDate= CURDATE();";
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql2, mySqlConn);
-        DataSet dataset1 = new DataSet();
-        DataAdapter1.Fill(dataset1, "isi");
+    {
 
-        //SELECT itemid
-        string sql3 = "SELECT itemid,quantity from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "');";
-        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter(sql3, mySqlConn);
-        DataSet dataset2 = new DataSet();
-        DataAdapter2.Fill(dataset2, "isi");
-        //insert into orderitem
-        for (int i = 0; i < n; i++)
-        {
-            string sql5 = "INSERT into orderitem(ponum,itemid,quantity) values (" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "," + dataset2.Tables[0].Rows[i]["itemid"] + "," + dataset2.Tables[0].Rows[i]["quantity"] + ")";
-            MySqlCommand cmd5 = new MySqlCommand(sql5, mySqlConn);
-            cmd5.ExecuteNonQuery();
-        }
+            //Insert data into orders table
+            string sql1 = "Insert into Orders(purchaseDate,status,uid) values (NOW(),'pending',(" + "SELECT user_id from user where username = '" + Session["username"].ToString() + "'));";
+            MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
+            cmd1.ExecuteNonQuery();
+            //SELECT ponumber
+            string sql2 = "SELECT MAX(poNum) AS poNum from orders where uid = (SELECT User_id from user WHERE username ='" + Session["username"].ToString() + "') AND purchaseDate= CURDATE();";
+            MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql2, mySqlConn);
+            DataSet dataset1 = new DataSet();
+            DataAdapter1.Fill(dataset1, "isi");
 
-        //DELECE SHOPPING CART
-        string sql4 = "DELETE FROM cart where uid = (SELECT user_id from user where username='" + Session["username"].ToString() + "')";
-        MySqlCommand cmd4 = new MySqlCommand(sql4, mySqlConn);
-        cmd4.ExecuteNonQuery();
-        bind();
+            //SELECT itemid
+            string sql3 = "SELECT itemid,quantity from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "');";
+            MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter(sql3, mySqlConn);
+            DataSet dataset2 = new DataSet();
+            DataAdapter2.Fill(dataset2, "isi");
+            //insert into orderitem
+
+            n = dataset2.Tables[0].Rows.Count;
+            
+            for (int i = 0; i < n; i++)
+            {
+                string sql5 = "INSERT into orderitem(poNum,itemid,quantity) values ('" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "','" + dataset2.Tables[0].Rows[i]["itemid"] + "','" + dataset2.Tables[0].Rows[i]["quantity"] + "')";
+                MySqlCommand cmd5 = new MySqlCommand(sql5, mySqlConn);
+                cmd5.ExecuteNonQuery();
+            }
+
+            //DELECE SHOPPING CART
+            string sql4 = "DELETE FROM cart where uid = (SELECT user_id from user where username='" + Session["username"].ToString() + "')";
+            MySqlCommand cmd4 = new MySqlCommand(sql4, mySqlConn);
+            cmd4.ExecuteNonQuery();
+            bind();
+  
+        
     }
 }

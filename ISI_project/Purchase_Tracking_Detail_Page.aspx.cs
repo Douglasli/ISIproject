@@ -9,6 +9,7 @@ using System.Data;
 
 public partial class _Default : System.Web.UI.Page
 {
+    String pn = "";
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,29 +19,30 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            String username = Session["username"].ToString();
+            String poNum = Request.QueryString["p"];
+            pn = poNum;
+            String uid = Session["uid"].ToString();
 
-            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
 
-            bind(username);
+            bind(poNum);
         }
 
 
     }
 
-    public void bind(String username)
+    public void bind(String poNum)
     {
-
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.shipDate,orders.shipAddress,user.Username,orders.status from orders,user where user.Username=" + "'" + username + "'and user.User_id=orders.uid", mySqlConn);
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
         DataSet dataset = new DataSet();
 
         DataAdapter1.Fill(dataset, "isi");
 
-        String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
+        //String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
 
-        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price from orderitem,item where poNum=" + "'" + poNo + "'and item.itemid=orderitem.itemid", mySqlConn);
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
         DataSet dataset2 = new DataSet();
 
         DataAdapter2.Fill(dataset2, "isi");
@@ -52,6 +54,10 @@ public partial class _Default : System.Web.UI.Page
         GridView2.DataSource = dataset2;
         GridView2.DataKeyNames = new string[] { "poNum" };
         GridView2.DataBind();
+
+        if((dataset.Tables[0].Rows[0]["status"].ToString() == "shipped") | (dataset.Tables[0].Rows[0]["status"].ToString() == "canceled")){
+            Cancel_btn.Visible = false;
+        }
 
         double total = 0;
 
@@ -65,5 +71,17 @@ public partial class _Default : System.Web.UI.Page
 
         }
         Label1.Text = total.ToString();
+    }
+    protected void Cancel_btn_Click(object sender, EventArgs e)
+    {
+        String sql1 = "delete from orderitem where poNum='" + pn + "'";
+        MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
+        cmd1.ExecuteNonQuery();
+
+        String sql2 = "update orders set status ='canceled' where poNum='"+pn+"'";
+        MySqlCommand cmd2 = new MySqlCommand(sql2, mySqlConn);
+        cmd2.ExecuteNonQuery();
+
+        bind(pn);
     }
 }

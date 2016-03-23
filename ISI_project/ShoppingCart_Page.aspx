@@ -22,8 +22,54 @@
         .auto-style24 {
             height: 43px;
         }
-        .auto-style25 {
+        .auto-style26 {
             width: 594px;
+            height: 20px;
+        }
+        .auto-style31 {
+            width: 938px;
+            height: 44px;
+        }
+        .auto-style36 {
+            width: 587px;
+        }
+        .auto-style39 {
+            height: 30px;
+            width: 204px;
+        }
+        .auto-style37 {
+            height: 23px;
+            width: 587px;
+        }
+        .auto-style48 {
+            width: 938px;
+            height: 51px;
+        }
+        .auto-style49 {
+            height: 29px;
+            width: 204px;
+        }
+        .auto-style50 {
+            width: 204px;
+        }
+        .auto-style51 {
+            height: 41px;
+        }
+        .auto-style52 {
+            height: 23px;
+            width: 204px;
+        }
+        .auto-style53 {
+            height: 23px;
+            width: 938px;
+        }
+        .auto-style54 {
+            height: 41px;
+            width: 938px;
+        }
+        .auto-style55 {
+            height: 41px;
+            width: 204px;
         }
         </style>
     </head>
@@ -56,20 +102,18 @@
         </table>
 
         </div>
-    <div style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div style="width:100%;height: 617px; background-color: rgba(255,255,255,0.5);">
         <hr />
-        <br />
-        <br />
-        <br />
-        <br />
         <div id="container">  
-            <table style="width:100%;">
+            <br />
+            <table id="User_pro" class="auto-style26" style="margin-top: 0px;">
                 <tr>
-                    <td class="auto-style25">  
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  Font-Size="12px" Width="591px" CellPadding="4" ForeColor="#333333" GridLines="None"  
+                    <td class="auto-style48" rowspan="2">
+                    <asp:button runat="server" id="User_Profile0" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Customer_Page.aspx" Text="Profile"/></td>
+                    <td class="auto-style36" style="font-family: 'Arial Unicode MS'; " rowspan="7">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  Font-Size="12px" Width="599px"  
             OnRowDeleting="GridView1_RowDeleting" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand"  
              OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">   
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />  
           <Columns>  
               
             <asp:BoundField DataField="name" HeaderText="Item name" readonly="true" />  
@@ -80,33 +124,59 @@
               <asp:CommandField HeaderText="Delete" ShowDeleteButton="true">  
               </asp:CommandField>  
                 
-          </Columns>  
-            <EditRowStyle BackColor="#999999" />  
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />  
-          <HeaderStyle BackColor="#5D7B9D" Font-Size="12px" HorizontalAlign="Center" Font-Bold="True" ForeColor="White" />  
-            <RowStyle HorizontalAlign="Center" BackColor="#F7F6F3" ForeColor="#333333" />  
-            <PagerStyle HorizontalAlign="Center" BackColor="#284775" ForeColor="White" />  
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />  
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />  
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />  
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />  
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />  
+          </Columns>
+             <EmptyDataTemplate>
+                                <table>
+                                <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                </table>
+             </EmptyDataTemplate>  
+          <HeaderStyle Font-Size="12px" HorizontalAlign="Center" />  
+            <RowStyle HorizontalAlign="Center" />  
         </asp:GridView>  
+                        <asp:Image ID="Image1" runat="server" Height="185px" ImageUrl="~/images/System Box Empty.png" Width="187px" />
                     </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style25" style="text-align: right">
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Check out" />
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;" class="auto-style50">&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style48" rowspan="2">
+                    <asp:button runat="server" id="Shopping_Cart0" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/ShoppingCart_Page.aspx" Text="Shopping Cart"/></td>
+                    <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;" class="auto-style50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                </tr>
+                <tr>
+                    <td class="auto-style48" rowspan="2">
+                    <asp:button runat="server" id="Purchase_Tracking0" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Purchase_Tracking_Page.aspx" Text="Purchase Tracking"/></td>
+                    <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                </tr>
+                <tr>
+                    <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
+                </tr>
+                <tr>
+                    <td class="auto-style31">
+                        &nbsp;</td>
+                    <td class="auto-style39" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp; </td>
+                </tr>
+                <tr>
+                    <td class="auto-style54"></td>
+                    <td class="auto-style51" style="font-family: 'Arial Unicode MS'; ">
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="Check out" style="background-color:rgba(255,255,255,0.1);" BorderStyle="None" Font-Bold="True" Height="100%" Width="100%" />
+                        </td>
+                    <td class="auto-style55" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style53">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                    <td class="auto-style37" style="font-family: 'Arial Unicode MS'; ">&nbsp;</td>
+                    <td class="auto-style52" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left"></td>
                 </tr>
             </table>
     </div>  </div>

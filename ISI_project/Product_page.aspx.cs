@@ -25,7 +25,7 @@ public partial class _Default : System.Web.UI.Page
 
             conn.Open();
 
-            String sql1 = "SELECT name,brand,price,thumbnailimage FROM item ";
+            String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ";
             MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
             ada1.Fill(dataset1, "isi");
 
@@ -77,7 +77,7 @@ public partial class _Default : System.Web.UI.Page
     protected void GridView2_Sorting(object sender, GridViewSortEventArgs e)
     {
         //Sort the data.
-        String sql1 = "SELECT name,brand,price,thumbnailimage FROM item ORDER BY price " + GetSortDirection(e.SortExpression);
+        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ORDER BY price " + GetSortDirection(e.SortExpression);
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {

@@ -23,33 +23,41 @@
             height: 43px;
         }
         .auto-style26 {
-            width: 100%;
-            height: 257px;
-        }
-        .auto-style34 {
-            width: 167px;
-            height: 51px;
+            width: 860px;
+            height: 297px;
         }
         .auto-style36 {
-            height: 29px;
-            width: 216px;
-        }
-        .auto-style35 {
-            height: 29px;
+            width: 688px;
         }
         .auto-style31 {
-            width: 167px;
-            height: 29px;
-        }
-        .auto-style33 {
-            width: 167px;
-            height: 23px;
+            width: 214px;
+            height: 30px;
         }
         .auto-style37 {
             height: 23px;
-            width: 216px;
+            width: 688px;
         }
-        .auto-style30 {
+        .auto-style38 {
+            height: 23px;
+            width: 215px;
+        }
+        .auto-style39 {
+            height: 30px;
+            width: 215px;
+        }
+        .auto-style43 {
+            width: 214px;
+            height: 51px;
+        }
+        .auto-style44 {
+            height: 29px;
+            width: 215px;
+        }
+        .auto-style45 {
+            width: 215px;
+        }
+        .auto-style46 {
+            width: 214px;
             height: 23px;
         }
         </style>
@@ -89,63 +97,67 @@
         <div>
             <table id="User_pro" class="auto-style26" style="margin-top: 0px;">
                 <tr>
-                    <td class="auto-style34" rowspan="2">
+                    <td class="auto-style43" rowspan="2">
                     <asp:button runat="server" id="User_Profile" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Customer_Page.aspx" Text="Profile"/></td>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">PoNum:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    <td class="auto-style36" style="font-family: 'Arial Unicode MS'; " rowspan="7" colspan="2">
+                        <asp:GridView ID="GridView1" runat="server" AllowSorting="True"  AutoGenerateColumns="False" Height="27px" Width="519px">
+                            <Columns>
+                                <asp:HyperLinkField DataNavigateUrlFormatString="Purchase_Tracking_Detail_Page.aspx?p={0}" DataTextField="poNum" HeaderText="Purchase Number" NavigateUrl="~/Purchase_Tracking_Detail_Page.aspx" DataNavigateUrlFields="poNum" />
+                                <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" />
+                                <asp:BoundField DataField="status" HeaderText="Status" />
+                            </Columns>
+                            <EmptyDataTemplate>
+                                <table>
+                                <tr><td></td><td></td><td></td></tr>
+                                </table>
+                            </EmptyDataTemplate>
+                        </asp:GridView>
                     </td>
+                    <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Purchase Date:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                    </td>
+                    <td style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;" class="auto-style45">&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style34" rowspan="2">
+                    <td class="auto-style43" rowspan="2">
                     <asp:button runat="server" id="Shopping_Cart" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/ShoppingCart_Page.aspx" Text="Shopping Cart"/></td>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Ship Date:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                    </td>
+                    <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Shipping Address:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                    </td>
+                    <td style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;" class="auto-style45">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style34" rowspan="2">
+                    <td class="auto-style43" rowspan="2">
                     <asp:button runat="server" id="Purchase_Tracking" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Purchase_Tracking_Page.aspx" Text="Purchase Tracking"/></td>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Status:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                    </td>
+                    <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Username:</td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
-                    </td>
+                    <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </td>
                 </tr>
                 <tr>
                     <td class="auto-style31">
                         &nbsp;</td>
-                    <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">
-                    <asp:button runat="server" id="Homepage3" style="border: 0px solid #FFFFFF; width:100%; height:100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" PostBackUrl="~/Purchase_Tracking_Detail_Page.aspx" Text="Detail"/></td>
-                    <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp; </td>
+                    <td class="auto-style39" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp; </td>
                 </tr>
                 <tr>
-                    <td class="auto-style33">&nbsp;</td>
-                    <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">&nbsp;</td>
-                    <td class="auto-style30" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left">&nbsp;</td>
+                    <td class="auto-style46"></td>
+                    <td class="auto-style46" style="font-family: 'Arial Unicode MS'; ">
+                        <asp:button runat="server" id="c_p" style="border: 0px solid #FFFFFF; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large; margin-left: 0px;" Text="Current Purchase" Height="100%" OnClick="c_p_Click" Width="100%"/>
+                        </td>
+                    <td class="auto-style38" style="font-family: 'Arial Unicode MS'; ">
+                        <asp:button runat="server" id="p_p" style="border: 0px solid #FFFFFF; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal;font-size: large; margin-left: 0px;" Text="Past Purchase" Height="100%" OnClick="p_p_Click" Width="100%"/>
+                        </td>
+                    <td class="auto-style38" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style33">&nbsp;</td>
-                    <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">&nbsp;</td>
-                    <td class="auto-style30" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left">&nbsp;</td>
+                    <td class="auto-style46"></td>
+                    <td class="auto-style37" style="font-family: 'Arial Unicode MS'; " colspan="2">&nbsp;</td>
+                    <td class="auto-style38" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left"></td>
                 </tr>
             </table>
         </div>

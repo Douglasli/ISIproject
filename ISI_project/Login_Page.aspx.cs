@@ -14,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
-        string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+        string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
         mySqlConn = new MySqlConnection(connStr);
         mySqlConn.Open();
     }
@@ -27,17 +27,28 @@ public partial class _Default : System.Web.UI.Page
         var hashed = "";
         hashed = FormsAuthentication.HashPasswordForStoringInConfigFile(TextBox2.Text, "SHA1");
         cmd.Parameters.AddWithValue("@paw", hashed);
-        object obj ;
-        obj = cmd.ExecuteScalar();
 
-
-        if (obj != null)
+         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
-            Session["username"] = TextBox1.Text;
-            Response.Redirect("Homepageafterlogin.aspx");
+            sda.SelectCommand = cmd;
+            using (DataTable dt = new DataTable())
+            {
+                sda.Fill(dt);
+                object obj ;
+                obj = cmd.ExecuteScalar();
+                if (obj != null){
+                    Session["username"] = TextBox1.Text;
+                    Session["uid"] = dt.Rows[0]["User_id"];
+                    Session["usertype"] = dt.Rows[0]["Type"];
+                    Response.Redirect("Homepageafterlogin.aspx");
         }
         else {
             lb1.Text = "invalid user name and password";
         }
+                
+            }
+        }
+
+
     }
 }

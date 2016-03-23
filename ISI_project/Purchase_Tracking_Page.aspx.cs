@@ -18,40 +18,64 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            String username = Session["username"].ToString();
+            String uid = Session["uid"].ToString();
 
-            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=MYSQL";
+            string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
 
-            bind(username);
+            bind(uid);
         }
 
 
     }
 
-    public void bind(String username)
+    public void bind(String uid)
     {
 
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.shipDate,orders.shipAddress,user.Username,orders.status from orders,user where user.Username=" + "'" + username + "'and user.User_id=orders.uid", mySqlConn);
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + uid + "'", mySqlConn);
         DataSet dataset = new DataSet();
-
-
         DataAdapter1.Fill(dataset, "isi");
 
-        String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
-        String pdate = dataset.Tables[0].Rows[0]["purchaseDate"].ToString();
-        String sdate = dataset.Tables[0].Rows[0]["shipDate"].ToString();
-        String saddr = dataset.Tables[0].Rows[0]["shipAddress"].ToString();
-        String uname = dataset.Tables[0].Rows[0]["Username"].ToString();
-        String status = dataset.Tables[0].Rows[0]["status"].ToString();
+        DataView dv = new DataView();
+        dv.Table = dataset.Tables[0];
+        dv.Sort = "purchaseDate desc";
+        GridView1.DataSource = dv;
 
-        Label1.Text = poNo;
-        Label2.Text = pdate;
-        Label3.Text = sdate;
-        Label4.Text = saddr;
-        Label5.Text = status;
-        Label6.Text = uname;
+        GridView1.DataKeyNames = new string[] { "poNum" };
+        GridView1.DataBind();
 
+
+    }
+
+
+    protected void c_p_Click(object sender, EventArgs e)
+    {
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + Session["uid"].ToString() + "' and (status='pending' or status = 'hold')", mySqlConn);
+        DataSet dataset = new DataSet();
+        DataAdapter1.Fill(dataset, "isi");
+
+        DataView dv = new DataView();
+        dv.Table = dataset.Tables[0];
+        dv.Sort = "purchaseDate desc";
+        GridView1.DataSource = dv;
+
+        GridView1.DataKeyNames = new string[] { "poNum" };
+        GridView1.DataBind();
+    }
+
+    protected void p_p_Click(object sender, EventArgs e)
+    {
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + Session["uid"].ToString() + "' and (status='shipped' or status = 'canceled')", mySqlConn);
+        DataSet dataset = new DataSet();
+        DataAdapter1.Fill(dataset, "isi");
+
+        DataView dv = new DataView();
+        dv.Table = dataset.Tables[0];
+        dv.Sort = "purchaseDate desc";
+        GridView1.DataSource = dv;
+
+        GridView1.DataKeyNames = new string[] { "poNum" };
+        GridView1.DataBind();
     }
 }

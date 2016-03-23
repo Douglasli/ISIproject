@@ -56,7 +56,7 @@
                 <td class="auto-style23">
                     <asp:button runat="server" id="Product" style="border: 0px solid #FFFFFF;width:100%;height:100%; background-color: rgba(255,255,255,0.1);font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" Text="Product" PostBackUrl="~/Product_Page.aspx"/></td>
                 <td class="auto-style23">
-                    <asp:button runat="server" id="Vendor" style="border: 0px solid #FFFFFF;width:100%;height:100%; background-color: rgba(255,255,255,0.1);font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" Text="Vendor" PostBackUrl="~/Vendor_Page.aspx"/></td>
+                    <asp:button runat="server" id="Vendor" style="border: 0px solid #FFFFFF;width:100%;height:100%; background-color: rgba(255,255,255,0.1);font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" Text="Vendor" PostBackUrl="~/Vendor_Page.aspx" /></td>
                 <td class="auto-style23">
                     <asp:button runat="server" id="Customer" style="border: 0px solid #FFFFFF;width:100%;height:100%; background-color: rgba(255,255,255,0.1);font-family: 'Buxton Sketch'; font-style: normal;font-size: large;" Text="Customer" PostBackUrl="~/Customer_Page.aspx"/></td>
                 <td class="auto-style24" style="text-align: right">
@@ -74,78 +74,45 @@
         <hr />
         <br />
         <br />
-        <br />
-        <br />
         <table class="style1">
             <tr>
                 <td>
-                    <asp:Label ID="Label1" runat="server" style="text-align: center" 
-                        Text="ProductName"></asp:Label>
+                    <asp:Label ID="pname" runat="server" Text="Label"></asp:Label>
                 </td>
             </tr>
         </table>
         <table class="style1">
             <tr>
                 <td class="style5" rowspan="7">
-                    <asp:Image ID="Image1" runat="server" />
+                    <asp:Image ID="Image1" runat="server" Height="240px" Width="251px" />
                 </td>
                 <td class="style2">
                     Category:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
                 </td>
-                <td>
+                <td rowspan="7">
                     &nbsp;</td>
             </tr>
             <tr>
                 <td class="style2">
                     Price:<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
                 </td>
-                <td>
-                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="style2">
-                    Connect vendor:<asp:LinkButton ID="LinkButton1" runat="server">LinkButton</asp:LinkButton>
-                </td>
-                <td>
                     &nbsp;</td>
             </tr>
             <tr>
                 <td class="style3">
-                    Buy:<asp:Button ID="Button1" runat="server" Text="Button" />
-                </td>
-                <td class="style4" rowspan="4">
-                    <asp:Panel ID="Panel2" runat="server">
-                        <table class="style1">
-                            <tr>
-                                <td>
-                                    Paypal:<asp:ImageButton ID="ImageButton1" runat="server" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Visa:<asp:ImageButton ID="ImageButton2" runat="server" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    MasterCard:<asp:ImageButton ID="ImageButton3" runat="server" />
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:Panel>
+                    Add to cart:</td>
+            </tr>
+            <tr>
+                <td class="style2">
+                    <asp:Button ID="Button2" runat="server" Text="BUY" BorderStyle="None" Height="50px" Width="100px" Style="background-color: rgba(255,255,255,0.1);" Font-Bold="True" Font-Names="Arial" Font-Size="Large" OnClick="Button2_Click"/>
                 </td>
             </tr>
             <tr>
                 <td class="style2">
-                    Add to cart:<asp:Button ID="Button2" runat="server" Text="Button" />
-                </td>
-            </tr>
-            <tr>
-                <td class="style2">
-                    <asp:Panel ID="Panel1" runat="server">
-                        Payment:<asp:Button ID="Button3" runat="server" Text="Button" />
-                    </asp:Panel>
-                </td>
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td class="style2">
