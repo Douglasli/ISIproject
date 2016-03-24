@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
         {
             string status = (string)Request.QueryString["status"];
             string b = (string)Request.QueryString["b"];
-            if (status == "pending" || status == "hold") { a = "o.status='" + status + "'"; } else { a = "(o.status='shipped' or o.status='cancelled')"; }
+            if (status == "pending" || status == "hold") { a = "o.status='" + status + "'"; } else { a = "(o.status='shipped' or o.status='canceled')"; }
             showorder();
         }
     }
@@ -82,7 +82,7 @@ public partial class _Default : System.Web.UI.Page
         try
         {
             {
-                Response.Redirect("Vender_order_search.aspx?status=shipped&b=cancelled");
+                Response.Redirect("Vender_order_search.aspx?status=shipped&b=canceled");
             }
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
