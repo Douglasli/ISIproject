@@ -32,8 +32,8 @@ public partial class _Default : System.Web.UI.Page
 
     public void bind(String uid)
     {
-
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + uid + "'", mySqlConn);
+        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * item.price) as total from orders, item, orderitem where uid=" + "'" + uid + "' AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql, mySqlConn);
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");
 
