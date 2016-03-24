@@ -13,6 +13,10 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null || (string)Session["usertype"] == "vender")
+        {
+            Response.Redirect("Login_Page.aspx");
+        }
         String itemid = Request.QueryString["id"];
         id = itemid;
         string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";

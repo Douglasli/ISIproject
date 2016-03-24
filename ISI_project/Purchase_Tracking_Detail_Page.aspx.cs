@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null)
+        if (Session["username"] == null || (string)Session["usertype"] == "vender")
         {
             Response.Redirect("Login_Page.aspx");
         }

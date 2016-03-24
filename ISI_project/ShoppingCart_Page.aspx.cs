@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection mySqlConn;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null)
+        if (Session["username"] == null || (string)Session["usertype"] == "vender")
         {
             Response.Redirect("Login_Page.aspx");
         }
@@ -38,6 +38,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Logout_Click(object sender, EventArgs e)
     {
         Session["username"] = null;
+        Session["type"] = null;
         Response.Redirect("Homepage.aspx");
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
