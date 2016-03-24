@@ -34,13 +34,13 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            for (var i = 2; i < 6 && i <=$("#div1 tr").length; i++) {
+            for (var i = 2; i < 6 && i <= $("#div1 tr").length; i++) {
 
-                var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(6)").html();
+                var url = $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html();
 
                 var img1 = $("<img src =" + url + " style='width:150px;height:150px;'/>");
 
-                $("#div1 tr:nth-child(" + i + ") td:nth-child(6)").html(img1);
+                $("#div1 tr:nth-child(" + i + ") td:nth-child(5)").html(img1);
                 //$("#div1 tr:nth-child(" + i + ") td:nth-child(1)").attr
                 //("onclick", "javascript:window.location.href='ProductDetail_page.aspx?id=" + $("#div1 tr:nth-child(" + i + ") td:nth-child(1)").html() + "'");   
             }
@@ -86,9 +86,13 @@
             &nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
-            <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" OnSorting="GridView2_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4">
+            <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" OnSorting="GridView2_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" AutoGenerateColumns="False">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show {0}'s Detail" />
+                    <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />
+                    <asp:BoundField DataField="brand" HeaderText="Price" ReadOnly="true" />
+                    <asp:BoundField DataField="price" HeaderText="Quantity" HtmlEncode="False" />
+                    <asp:BoundField DataField="thumbnailimage" HeaderText="Thumbnail image" HtmlEncode="False" />
                 </Columns>
             </asp:GridView>
             <asp:Button ID="pre" runat="server" Height="30px" Text="Previous Page" Width="150px" OnClick="pre_Click" />
