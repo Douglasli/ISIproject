@@ -19,7 +19,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            
+
             Button1.Text = Session["username"].ToString();
 
             string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
@@ -82,7 +82,7 @@ public partial class _Default : System.Web.UI.Page
     }
     public void bind()
     {
-        string sql = "select item.name,cart.quantity,item.price,item.price*cart.quantity as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username=" + "'" + Session["username"].ToString() + "')";
+        string sql = "select item.itemid, item.name,cart.quantity,item.price,item.price*cart.quantity as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username=" + "'" + Session["username"].ToString() + "')";
         MySqlCommand cmd = new MySqlCommand(sql, mySqlConn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
@@ -98,17 +98,35 @@ public partial class _Default : System.Web.UI.Page
                 if (n != 0)
                 {
                     Image1.Visible = false;
+
                 }
             }
         }
+        string sql1 = "select sum(item.price*cart.quantity) as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username= '" + Session["username"].ToString() + "')";
+        MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
+        using (MySqlDataAdapter sda = new MySqlDataAdapter())
+        {
+            sda.SelectCommand = cmd1;
+            using (DataTable dt = new DataTable())
+            {
+                sda.Fill(dt);
+                Total.Text = "Total is " + dt.Rows[0]["total"].ToString();
+                if (dt.Rows[0]["total"].ToString() == "")
+                {
+                    Total.Visible = false;
 
+                }
+            }
+        }
     }
 
     protected void Button2_Click1(object sender, EventArgs e)
     {
-
+        if (Total.Visible == false) {
+            return;
+        }
             //Insert data into orders table
-            string sql1 = "Insert into Orders(purchaseDate,status,uid) values (NOW(),'pending',(" + "SELECT user_id from user where username = '" + Session["username"].ToString() + "'));";
+            string sql1 = "Insert into Orders(purchaseDate,status,uid,shipAddress) values (NOW(),'pending',(" + "SELECT user_id from user where username = '" + Session["username"].ToString() + "'),(SELECT address from user where username = '" + Session["username"].ToString() + "')); ";
             MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
             cmd1.ExecuteNonQuery();
             //SELECT ponumber
@@ -125,7 +143,7 @@ public partial class _Default : System.Web.UI.Page
             //insert into orderitem
 
             n = dataset2.Tables[0].Rows.Count;
-            
+
             for (int i = 0; i < n; i++)
             {
                 string sql5 = "INSERT into orderitem(poNum,itemid,quantity) values ('" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "','" + dataset2.Tables[0].Rows[i]["itemid"] + "','" + dataset2.Tables[0].Rows[i]["quantity"] + "')";
@@ -138,7 +156,8 @@ public partial class _Default : System.Web.UI.Page
             MySqlCommand cmd4 = new MySqlCommand(sql4, mySqlConn);
             cmd4.ExecuteNonQuery();
             bind();
-
-            Response.Redirect("Purchase_Tracking_Page.aspx");
+            //Redirect to purchase page
+            Response.Redirect("Purchase_Tracking_Detail_Page.aspx?p=" + dataset1.Tables[0].Rows[0]["poNum"].ToString());
+        
     }
 }
