@@ -156,6 +156,7 @@
                                 <RowStyle HorizontalAlign="Center" />
                             </asp:GridView>
                             <asp:Image ID="Image1" runat="server" Height="185px" ImageUrl="~/images/System Box Empty.png" Width="187px" />
+                            <asp:Label ID="Total" runat="server"></asp:Label>
                         </td>
                         <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>

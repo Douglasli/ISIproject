@@ -19,7 +19,7 @@ public partial class _Default : System.Web.UI.Page
         else
         {
             String uid = Session["uid"].ToString();
-
+            Button1.Text = Session["username"].ToString();
             string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
@@ -77,5 +77,11 @@ public partial class _Default : System.Web.UI.Page
 
         GridView1.DataKeyNames = new string[] { "poNum" };
         GridView1.DataBind();
+    }
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
     }
 }

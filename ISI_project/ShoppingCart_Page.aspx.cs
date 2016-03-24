@@ -37,8 +37,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Logout_Click(object sender, EventArgs e)
     {
-        Session["username"] = null;
-        Session["type"] = null;
+        Session.Abandon();
         Response.Redirect("Homepage.aspx");
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)

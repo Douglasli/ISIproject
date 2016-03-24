@@ -19,6 +19,7 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
+            Button1.Text = Session["username"].ToString();
             String poNum = Request.QueryString["p"];
             pn = poNum;
             String uid = Session["uid"].ToString();
@@ -81,7 +82,12 @@ public partial class _Default : System.Web.UI.Page
         String sql2 = "update orders set status ='canceled' where poNum='"+pn+"'";
         MySqlCommand cmd2 = new MySqlCommand(sql2, mySqlConn);
         cmd2.ExecuteNonQuery();
-
         bind(pn);
+    }
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
     }
 }

@@ -15,9 +15,18 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null || (string)Session["usertype"] == "vender")
+        if ((string)Session["usertype"] == "vender")
         {
             Response.Redirect("Login_Page.aspx");
+        }
+        if (Session["username"] != null)
+        {
+            Login.Visible = false;
+            Button4.Text = Session["username"].ToString();
+        }
+        else {
+            Button4.Visible = false;
+            Logout.Visible = false;
         }
         showproduct();
     }
@@ -200,5 +209,11 @@ public partial class _Default : System.Web.UI.Page
                 GridView1.DataBind();
             }
         }
+    }
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
     }
 }

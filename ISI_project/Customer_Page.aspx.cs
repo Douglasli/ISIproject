@@ -19,11 +19,10 @@ public partial class _Default : System.Web.UI.Page
         else
         {
             String username = Session["username"].ToString();
-
+            Button1.Text = username;
             string connStr = "Database=ISI;Data Source=localhost;User Id=root;Password=123999";
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
-
             bind(username);
         }
         
@@ -54,5 +53,11 @@ public partial class _Default : System.Web.UI.Page
         Label5.Text = email;
         Label6.Text = addr;
         Label7.Text = type;
+    }
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
     }
 }
