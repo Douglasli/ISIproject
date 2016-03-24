@@ -132,6 +132,22 @@
                                     </table>
                                 </EmptyDataTemplate>
                             </asp:GridView>
+                            <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" Height="27px" Width="519px" Visible="False">
+                                <Columns>
+                                    <asp:HyperLinkField DataNavigateUrlFormatString="Purchase_Tracking_Detail_Page.aspx?p={0}" DataTextField="poNum" HeaderText="Purchase Number" NavigateUrl="~/Purchase_Tracking_Detail_Page.aspx" DataNavigateUrlFields="poNum" />
+                                    <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" />
+                                    <asp:BoundField DataField="status" HeaderText="Status" />
+                                </Columns>
+                                <EmptyDataTemplate>
+                                    <table>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </EmptyDataTemplate>
+                            </asp:GridView>
                         </td>
                         <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>

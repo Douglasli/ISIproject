@@ -36,14 +36,14 @@ public partial class _Default : System.Web.UI.Page
 
     public void bind(String poNum)
     {
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.canDate,orders.canType,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
         DataSet dataset = new DataSet();
 
         DataAdapter1.Fill(dataset, "isi");
 
         //String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
 
-        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price,orderitem.quantity * item.price as total  from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
         DataSet dataset2 = new DataSet();
 
         DataAdapter2.Fill(dataset2, "isi");

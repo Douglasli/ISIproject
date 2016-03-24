@@ -32,6 +32,8 @@ public partial class _Default : System.Web.UI.Page
 
     public void bind(String uid)
     {
+        GridView1.Visible = true;
+        GridView2.Visible = false;
         String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * item.price) as total from orders, item, orderitem where uid=" + "'" + uid + "' AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql, mySqlConn);
         DataSet dataset = new DataSet();
@@ -51,7 +53,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void c_p_Click(object sender, EventArgs e)
     {
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + Session["uid"].ToString() + "' and (status='pending' or status = 'hold')", mySqlConn);
+        GridView1.Visible = true;
+        GridView2.Visible = false;
+        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * item.price) as total from orders, item, orderitem  where uid=" + "'" + Session["uid"].ToString() + "' and (status='pending' or status = 'hold')  AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql, mySqlConn);
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");
 
@@ -66,17 +71,17 @@ public partial class _Default : System.Web.UI.Page
 
     protected void p_p_Click(object sender, EventArgs e)
     {
-        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select poNum,purchaseDate,status,uid from orders where uid=" + "'" + Session["uid"].ToString() + "' and (status='shipped' or status = 'canceled')", mySqlConn);
+        GridView1.Visible = false;
+        GridView2.Visible = true;
+        MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,purchaseDate,status,uid from orders where uid=" + "'" + Session["uid"].ToString() + "' and (status='shipped' or status = 'canceled')", mySqlConn);
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");
-
         DataView dv = new DataView();
         dv.Table = dataset.Tables[0];
         dv.Sort = "purchaseDate desc";
-        GridView1.DataSource = dv;
-
-        GridView1.DataKeyNames = new string[] { "poNum" };
-        GridView1.DataBind();
+        GridView2.DataSource = dv;
+        GridView2.DataKeyNames = new string[] { "poNum" };
+        GridView2.DataBind();
     }
 
     protected void Logout_Click(object sender, EventArgs e)
