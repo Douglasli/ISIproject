@@ -74,8 +74,10 @@
     <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
         <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px" ></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Height="36px" Text="search" Width="73px" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Height="36px" Text="search by name" Width="192px" OnClick="Button1_Click" />
         <br />
+        <asp:TextBox ID="TextBox3" runat="server" Height="31px" Width="172px"></asp:TextBox>
+        <asp:Button ID="Button5" runat="server" Height="36px" OnClick="Button5_Click" Text="search by id" Width="192px" />
         <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" OnPageIndexChanging="GridView1_PageIndexChanging" AllowPaging="True" PageSize="4">
         </asp:GridView>
         <asp:Button ID="Button3" runat="server" Height="30px" OnClick="Button3_Click" Text="Previous Page" Width="150px" />

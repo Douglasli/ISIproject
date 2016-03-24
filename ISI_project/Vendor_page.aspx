@@ -78,9 +78,13 @@
     <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
         <hr />
         <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search" Width="73px" />
+        <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search by name" Width="180px" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="Button2" runat="server" Height="35px" OnClick="Button2_Click" Text="Show all brand" Width="158px" />
+        <br />
+        <asp:TextBox ID="TextBox3" runat="server" Height="31px" Width="172px"></asp:TextBox>
+        <asp:Button ID="Button4" runat="server" Height="36px" OnClick="Button4_Click" Text="search by id" Width="180px" />
+        <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />

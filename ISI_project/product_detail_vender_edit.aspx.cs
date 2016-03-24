@@ -34,7 +34,7 @@ public partial class _Default : System.Web.UI.Page
                     ViewState["count"] = (int)ViewState["count"] + 1;
                 }
             }
-            Label16.Text = ViewState["count"].ToString();
+            
             change();
         }
     }
@@ -151,8 +151,11 @@ public partial class _Default : System.Web.UI.Page
                FileInfo fi = new FileInfo(fulname);
                string filename = fi.Name;
                string filefulname = fi.FullName;
+            string dt = "a";
+            if (File.Exists(serverpath + fulname)) { filename = dt+filename; }
                FileUpload1.PostedFile.SaveAs(serverpath + filename);
-               buf1= "/shoe/"+fulname;
+               buf1 = "/shoe/" + dt+fulname;
+            
             }
         
         if (up1.FileName!="")
@@ -161,8 +164,10 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi1 = new FileInfo(fulname1);
             string filename1 = fi1.Name;
             string filefulname1 = fi1.FullName;
+            string dt1 = "e";
+            if (File.Exists(serverpath + fulname1)) { filename1 = dt1 + filename1; }
             up1.PostedFile.SaveAs(serverpath + filename1);
-            des = des + "/shoe/" + filename1 + ";";
+            des = des + "/shoe/" +dt1+ fulname1 + ";";
         }
 
         if (up2.FileName!="")
@@ -171,8 +176,10 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi2 = new FileInfo(fulname2);
             string filename2 = fi2.Name;
             string filefulname2 = fi2.FullName;
+            string dt2 = "i";
+            if (File.Exists(serverpath + fulname2)) { filefulname2 = dt2 + filefulname2; }
             up2.PostedFile.SaveAs(serverpath + filename2);
-            des = des + "/shoe/" + filename2 + ";";
+            des = des + "/shoe/" +dt2+ fulname2 + ";";
         }
 
         if (up3.FileName != "" )
@@ -181,8 +188,10 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi3 = new FileInfo(fulname3);
             string filename3 = fi3.Name;
             string filefulname3 = fi3.FullName;
+            string dt3 = "o";
+            if (File.Exists(serverpath + fulname3)) { filename3 = dt3 + filename3; }
             up3.PostedFile.SaveAs(serverpath + filename3);
-            des = des + "/shoe/" + filename3 + ";";
+            des = des + "/shoe/" +dt3+ fulname3 + ";";
         }
 
         if (up4.FileName != "")
@@ -191,9 +200,13 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi4 = new FileInfo(fulname4);
             string filename4 = fi4.Name;
             string filefulname4 = fi4.FullName;
+            string dt4 = "u";
+            if (File.Exists(serverpath+fulname4)) { filefulname4 = dt4 + filefulname4; }
             up4.PostedFile.SaveAs(serverpath + filename4);
-            des = des + "/shoe/" + filename4 + ";";
+            des = des + "/shoe/" +dt4+ fulname4 + ";";
         }
+
+        
 
         conn.Open();
         string sql2 = "update isi.item set name='"+t1+"',brand='"+t2+"',price="+t3+",thumbnailimage='"+buf1+"',description='"+t4+"',detailphoto='"+des+"' where itemid =" + iid;
@@ -206,8 +219,9 @@ public partial class _Default : System.Web.UI.Page
 
         try
         {
-            {
-                Response.Redirect("product_detail_vender.aspx?a="+t1+"&id=" + iid + "");
+            {  
+                    Response.Redirect("product_detail_vender.aspx?a=" + t1 + "&id=" + iid + "");
+                
             }
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
@@ -375,8 +389,5 @@ public partial class _Default : System.Web.UI.Page
 
 
 
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        if (up1.FileName == "") { Label16.Text = "true"; } else { Label16.Text = "false"; }
-    }
+    
 }

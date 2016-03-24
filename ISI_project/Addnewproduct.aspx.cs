@@ -66,7 +66,10 @@ public partial class _Default : System.Web.UI.Page
             string filefulname4 = fi4.FullName;
             FileUpload5.PostedFile.SaveAs(serverpath + filename4);
             des = des + "shoe/" + filename4 + ";"; }
+        conn.Open();
+        string check1 = "";
 
+        conn.Close();
         
 
         conn.Open();

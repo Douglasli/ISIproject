@@ -52,7 +52,7 @@ public partial class _Default : System.Web.UI.Page
     {   try
         {
             {
-                Response.Redirect("Searchresult.aspx?poNum=" + TextBox1.Text);
+                Response.Redirect("Searchresult.aspx?poNum=none&orname=" + TextBox1.Text);
             }
         }
         catch (Exception ex) { Response.Write("an error occur: "+ex); }
@@ -144,6 +144,17 @@ public partial class _Default : System.Web.UI.Page
         {
             {
                 Response.Redirect("Vendor_page_order.aspx");
+            }
+        }
+        catch (Exception ex) { Response.Write("an error occur: " + ex); }
+    }
+
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            {
+                Response.Redirect("Searchresult.aspx?poNum=" + TextBox3.Text + "&orname=none");
             }
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }

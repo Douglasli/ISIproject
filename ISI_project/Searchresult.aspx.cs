@@ -21,53 +21,36 @@ public partial class _Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             String poNum = Request.QueryString["poNum"];
-            TextBox1.Text = poNum;
-
-            CheckMySqlConnection(poNum);
-        }
-        else
-        {
-            
-            CheckMySqlConnection(TextBox1.Text);
+            String orname = Request.QueryString["orname"];
+            CheckMySqlConnection(poNum, orname);
         }
         
         
     }
 
-    private void CheckMySqlConnection(String keyw)
+    private void CheckMySqlConnection(String poNum,String orname)
     {
 
         try
         {
 
             conn.Open();
-
-            String sql1 = "SELECT name,brand,price,thumbnailimage FROM item WHERE name LIKE '%"+keyw+"%' or brand LIKE '%"+keyw+"%'";
-            MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
-
-            String sql2 = "SELECT name,brand,price,thumbnailimage FROM item WHERE itemid =" + keyw;
-            MySqlDataAdapter ada2 = new MySqlDataAdapter(sql2, conn);
-
-            char[] charar = keyw.ToCharArray();
-            Char char1 = charar[0];
-
-            if (Char.IsDigit(char1))
+            if (poNum == "none" && orname != "none")
             {
-                
-                ada2.Fill(dataset1, "isi");
-                
+                String sql1 = "SELECT name,brand,price,thumbnailimage FROM item WHERE name LIKE '%" + orname + "%' ";
+                MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
+                ada1.Fill(dataset1, "isi");
             }
-            else { ada1.Fill(dataset1, "isi"); }
+            else {
+                String sql2 = "SELECT name,brand,price,thumbnailimage FROM item WHERE itemid =" + poNum;
+                MySqlDataAdapter ada2 = new MySqlDataAdapter(sql2, conn);
+                ada2.Fill(dataset1, "isi");
+            }
             
-
             GridView1.DataSource = dataset1;
             GridView1.DataKeyNames = new String[] { "name" };
-
-            
             GridView1.DataBind();
-
             
-
             conn.Close();
         }
         catch (Exception ex)
@@ -133,11 +116,22 @@ public partial class _Default : System.Web.UI.Page
         try
         {
             {
-                Response.Redirect("Searchresult.aspx?poNum=" + TextBox1.Text);
+                Response.Redirect("Searchresult.aspx?poNum=none&orname="+TextBox1.Text);
             }
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
     }
 
-    
+
+
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            {
+                Response.Redirect("Searchresult.aspx?poNum=" + TextBox3.Text+"&orname=none");
+            }
+        }
+        catch (Exception ex) { Response.Write("an error occur: " + ex); }
+    }
 }

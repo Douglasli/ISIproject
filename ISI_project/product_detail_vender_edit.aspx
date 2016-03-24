@@ -110,8 +110,6 @@
         <asp:Label ID="Label11" runat="server" Font-Size="Larger" Text="Detail photos:"></asp:Label>
         <asp:Label ID="Label13" runat="server" Text="Label"></asp:Label>
         &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label16" runat="server" Text="Label"></asp:Label>
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
         <br />
         <asp:Label ID="Label15" runat="server" Font-Size="Larger" Text="Add new detail photo:"></asp:Label>
         &nbsp;<asp:FileUpload ID="up1" runat="server" Height="26px" Width="272px" />
