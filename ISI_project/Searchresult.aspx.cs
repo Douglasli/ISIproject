@@ -24,7 +24,11 @@ public partial class _Default : System.Web.UI.Page
             String orname = Request.QueryString["orname"];
             CheckMySqlConnection(poNum, orname);
         }
-        
+        else {
+            String poNum = Request.QueryString["poNum"];
+            String orname = Request.QueryString["orname"];
+            CheckMySqlConnection(poNum, orname);
+        }
         
     }
 
