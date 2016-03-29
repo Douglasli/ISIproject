@@ -53,7 +53,7 @@ public partial class _Default : System.Web.UI.Page
             TextBox1.Text = (string)re[0];
             TextBox2.Text = (string)re[1];
             double re2 = (double)re[2];
-            TextBox3.Text = re2.ToString();
+            Label16.Text = re2.ToString();
             Image1.ImageUrl = (string)re[3];
             TextBox4.Text= (string)re[4];
             Label13.Text = (string)re[5];
@@ -132,7 +132,7 @@ public partial class _Default : System.Web.UI.Page
         string iid = Request.QueryString["id"];
         string t1 = TextBox1.Text;
         string t2 = TextBox2.Text;
-        string t3 = TextBox3.Text;
+        
         string t4 = TextBox4.Text;
         string serverpath = Server.MapPath("shoe/");
 
@@ -209,7 +209,7 @@ public partial class _Default : System.Web.UI.Page
         
 
         conn.Open();
-        string sql2 = "update isi.item set name='"+t1+"',brand='"+t2+"',price="+t3+",thumbnailimage='"+buf1+"',description='"+t4+"',detailphoto='"+des+"' where itemid =" + iid;
+        string sql2 = "update isi.item set name='"+t1+"',brand='"+t2+"',thumbnailimage='"+buf1+"',description='"+t4+"',detailphoto='"+des+"' where itemid =" + iid;
         MySqlCommand cm2 = new MySqlCommand(sql2, conn);
         cm2.ExecuteNonQuery();
         conn.Close();
@@ -389,5 +389,11 @@ public partial class _Default : System.Web.UI.Page
 
 
 
-    
+
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
+    }
 }

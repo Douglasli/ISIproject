@@ -21,6 +21,8 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect("Homepage.aspx?");
         }
 
+        
+
         if (!IsPostBack)
         {
             showorder();
@@ -107,5 +109,15 @@ public partial class _Default : System.Web.UI.Page
             }
         }
         catch (Exception ex) { Response.Write("an error occur: " + ex); }
+    }
+
+
+
+
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Homepage.aspx");
     }
 }
