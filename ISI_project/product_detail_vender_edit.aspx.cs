@@ -53,7 +53,7 @@ public partial class _Default : System.Web.UI.Page
             TextBox1.Text = (string)re[0];
             TextBox2.Text = (string)re[1];
             double re2 = (double)re[2];
-            Label16.Text = re2.ToString();
+            TextBox5.Text = re2.ToString();
             Image1.ImageUrl = (string)re[3];
             TextBox4.Text= (string)re[4];
             Label13.Text = (string)re[5];
@@ -132,7 +132,7 @@ public partial class _Default : System.Web.UI.Page
         string iid = Request.QueryString["id"];
         string t1 = TextBox1.Text;
         string t2 = TextBox2.Text;
-        
+        string t5 = TextBox5.Text;
         string t4 = TextBox4.Text;
         string serverpath = Server.MapPath("shoe/");
 
@@ -145,6 +145,13 @@ public partial class _Default : System.Web.UI.Page
         string des = (string)re1[1];
         conn.Close();
 
+        string de1 = "";
+        int de2 = buf1.IndexOf("shoe");
+        int de3 = buf1.IndexOf("/", de2 + 5);
+        de1 = buf1.Substring(de2+5, de3 - de2-5);
+        string de4 = de1 + "/";             //find which folder
+        
+
         if (FileUpload1.PostedFile.FileName != "")
             {
                string fulname = FileUpload1.PostedFile.FileName;
@@ -152,9 +159,12 @@ public partial class _Default : System.Web.UI.Page
                string filename = fi.Name;
                string filefulname = fi.FullName;
             string dt = "a";
-            if (File.Exists(serverpath + fulname)) { filename = dt+filename; }
-               FileUpload1.PostedFile.SaveAs(serverpath + filename);
-               buf1 = "/shoe/" + dt+fulname;
+            if (File.Exists(serverpath+de4 + fulname)) {
+                filename = dt+filename;
+                fulname = dt + fulname;
+            }
+               FileUpload1.PostedFile.SaveAs(serverpath +de4+ filename);
+               buf1 = "/shoe/"+de4 +fulname;
             
             }
         
@@ -165,9 +175,9 @@ public partial class _Default : System.Web.UI.Page
             string filename1 = fi1.Name;
             string filefulname1 = fi1.FullName;
             string dt1 = "e";
-            if (File.Exists(serverpath + fulname1)) { filename1 = dt1 + filename1; }
-            up1.PostedFile.SaveAs(serverpath + filename1);
-            des = des + "/shoe/" +dt1+ fulname1 + ";";
+            if (File.Exists(serverpath +de4+ fulname1)) { filename1 = dt1 + filename1; fulname1 = dt1 + fulname1; }
+            up1.PostedFile.SaveAs(serverpath +de4+ filename1);
+            des = des + "/shoe/"+de4+ fulname1 + ";";
         }
 
         if (up2.FileName!="")
@@ -177,9 +187,9 @@ public partial class _Default : System.Web.UI.Page
             string filename2 = fi2.Name;
             string filefulname2 = fi2.FullName;
             string dt2 = "i";
-            if (File.Exists(serverpath + fulname2)) { filefulname2 = dt2 + filefulname2; }
-            up2.PostedFile.SaveAs(serverpath + filename2);
-            des = des + "/shoe/" +dt2+ fulname2 + ";";
+            if (File.Exists(serverpath +de4+ fulname2)) { filefulname2 = dt2 + filefulname2; fulname2 = dt2 + fulname2; }
+            up2.PostedFile.SaveAs(serverpath +de4+ filename2);
+            des = des + "/shoe/"+de4+ fulname2 + ";";
         }
 
         if (up3.FileName != "" )
@@ -189,9 +199,9 @@ public partial class _Default : System.Web.UI.Page
             string filename3 = fi3.Name;
             string filefulname3 = fi3.FullName;
             string dt3 = "o";
-            if (File.Exists(serverpath + fulname3)) { filename3 = dt3 + filename3; }
-            up3.PostedFile.SaveAs(serverpath + filename3);
-            des = des + "/shoe/" +dt3+ fulname3 + ";";
+            if (File.Exists(serverpath +de4+ fulname3)) { filename3 = dt3 + filename3; fulname3 = dt3 + fulname3; }
+            up3.PostedFile.SaveAs(serverpath +de4+ filename3);
+            des = des + "/shoe/" +de4 + fulname3 + ";";
         }
 
         if (up4.FileName != "")
@@ -201,15 +211,15 @@ public partial class _Default : System.Web.UI.Page
             string filename4 = fi4.Name;
             string filefulname4 = fi4.FullName;
             string dt4 = "u";
-            if (File.Exists(serverpath+fulname4)) { filefulname4 = dt4 + filefulname4; }
-            up4.PostedFile.SaveAs(serverpath + filename4);
-            des = des + "/shoe/" +dt4+ fulname4 + ";";
+            if (File.Exists(serverpath +de4+ fulname4)) { filefulname4 = dt4 + filefulname4; fulname4 = dt4 + fulname4; }
+            up4.PostedFile.SaveAs(serverpath +de4+ filename4);
+            des = des + "/shoe/" + de4 + fulname4 + ";";
         }
 
         
 
         conn.Open();
-        string sql2 = "update isi.item set name='"+t1+"',brand='"+t2+"',thumbnailimage='"+buf1+"',description='"+t4+"',detailphoto='"+des+"' where itemid =" + iid;
+        string sql2 = "update isi.item set name='"+t1+"',brand='"+t2+"', price="+t5+" ,thumbnailimage='"+buf1+"',description='"+t4+"',detailphoto='"+des+"' where itemid =" + iid;
         MySqlCommand cm2 = new MySqlCommand(sql2, conn);
         cm2.ExecuteNonQuery();
         conn.Close();
@@ -255,8 +265,6 @@ public partial class _Default : System.Web.UI.Page
             MySqlCommand cm2 = new MySqlCommand(sql2, conn);
             cm2.ExecuteNonQuery();
             conn.Close();
-
-            
         
         try
         {

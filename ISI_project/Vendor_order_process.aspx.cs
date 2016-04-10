@@ -33,7 +33,7 @@ public partial class _Default : System.Web.UI.Page
     private void showprocess()
     {
         conn.Open();
-        string sql1 = "select o.poNum, o.purchaseDate, u.Username, o.shipAddress, SUM(i.price*m.quantity), o.status, o.shipDate, o.canDate, o.canType from isi.orders o, isi.user u, isi.orderitem m, isi.item i where o.uid = u.User_id AND m.poNum = o.poNum AND i.itemid = m.itemid AND o.poNum = "+ poNum;
+        string sql1 = "select o.poNum, o.purchaseDate, u.Username, o.shipAddress, m.quantity*m.price, o.status, o.shipDate, o.canDate, o.canType from isi.orders o, isi.user u, isi.orderitem m, isi.item i where o.uid = u.User_id AND m.poNum = o.poNum AND i.itemid = m.itemid AND o.poNum = "+ poNum;
         MySqlCommand cmd1 = new MySqlCommand(sql1,conn);
         MySqlDataReader re = cmd1.ExecuteReader();
         re.Read();
@@ -122,7 +122,7 @@ public partial class _Default : System.Web.UI.Page
         conn.Close();
 
         conn.Open();
-        string sql2 = "select i.name, m.quantity, i.price, SUM(i.price*m.quantity) as Subtotal from isi.item i, isi.orderitem m where i.itemid = m.itemid AND poNum = '"+poNum+"' group by i.itemid";
+        string sql2 = "select i.name, m.quantity, m.price, m.quantity*m.price as Subtotal from isi.item i, isi.orderitem m where i.itemid = m.itemid AND poNum = '" + poNum+"' group by i.itemid";
         MySqlDataAdapter ada3 = new MySqlDataAdapter(sql2, conn);
         ada3.Fill(dataset1, "isi");
         GridView1.DataSource = dataset1;

@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         {
             conn.Open();
             
-            string sql1 = "select o.poNum, o.purchaseDate, u.Username, SUM(m.quantity*i.price) as total_amount, o.status from isi.user u, isi.orders o, isi.orderitem m, isi.item i where u.User_id = o.uid AND o.poNum = m.poNum AND i.itemid = m.itemid AND "+a+" group by poNum order by o.purchaseDate desc";
+            string sql1 = "select o.poNum, o.purchaseDate, u.Username, m.quantity*m.price as total_amount, o.status from isi.user u, isi.orders o, isi.orderitem m, isi.item i where u.User_id = o.uid AND o.poNum = m.poNum AND i.itemid = m.itemid AND " + a+" group by poNum order by o.purchaseDate desc";
             
             MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
             ada1.Fill(dataset1, "isi");

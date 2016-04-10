@@ -22,12 +22,28 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        string folderno = "";
+        conn.Open();
+        string sql1 = "select MAX(itemid) from item";
+        MySqlCommand com1 = new MySqlCommand(sql1, conn);
+        MySqlDataReader re1 = com1.ExecuteReader();
+        re1.Read();
+        int num1 = (int)re1[0];
+        num1 = num1 + 1;
+        conn.Close();
+
         string fulname = FileUpload1.PostedFile.FileName;
         FileInfo fi = new FileInfo(fulname);
         string filename = fi.Name;
         string filefulname = fi.FullName;
         string serverpath = Server.MapPath("shoe/");
-        FileUpload1.PostedFile.SaveAs(serverpath + filename);
+
+        if (!Directory.Exists(serverpath+num1)) {
+            DirectoryInfo folder = Directory.CreateDirectory(serverpath + num1);
+            folderno = num1.ToString() + "/";
+        }
+
+        FileUpload1.PostedFile.SaveAs(serverpath+ folderno + filename);
 
         string des = "";
 
@@ -37,8 +53,8 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi1 = new FileInfo(fulname1);
             string filename1 = fi1.Name;
             string filefulname1 = fi1.FullName;
-            FileUpload2.PostedFile.SaveAs(serverpath + filename1);
-            des = des + "shoe/" + filename1 +";"; }
+            FileUpload2.PostedFile.SaveAs(serverpath +folderno+ filename1);
+            des = des + "shoe/"+folderno + filename1 +";"; }
 
         if (FileUpload3.PostedFile.FileName != "")
         {
@@ -46,8 +62,8 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi2 = new FileInfo(fulname2);
             string filename2 = fi2.Name;
             string filefulname2 = fi2.FullName;
-            FileUpload3.PostedFile.SaveAs(serverpath + filename2);
-            des = des + "shoe/" + filename2 + ";"; }
+            FileUpload3.PostedFile.SaveAs(serverpath +folderno+ filename2);
+            des = des + "shoe/" +folderno+ filename2 + ";"; }
 
         if (FileUpload4.PostedFile.FileName != "")
         {
@@ -55,8 +71,8 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi3 = new FileInfo(fulname3);
             string filename3 = fi3.Name;
             string filefulname3 = fi3.FullName;
-            FileUpload4.PostedFile.SaveAs(serverpath + filename3);
-            des = des + "shoe/" + filename3 + ";"; }
+            FileUpload4.PostedFile.SaveAs(serverpath +folderno+ filename3);
+            des = des + "shoe/" +folderno+ filename3 + ";"; }
 
         if (FileUpload5.PostedFile.FileName != "")
         {
@@ -64,8 +80,8 @@ public partial class _Default : System.Web.UI.Page
             FileInfo fi4 = new FileInfo(fulname4);
             string filename4 = fi4.Name;
             string filefulname4 = fi4.FullName;
-            FileUpload5.PostedFile.SaveAs(serverpath + filename4);
-            des = des + "shoe/" + filename4 + ";"; }
+            FileUpload5.PostedFile.SaveAs(serverpath +folderno+filename4);
+            des = des + "shoe/" +folderno+ filename4 + ";"; }
         conn.Open();
         string check1 = "";
 
@@ -73,7 +89,7 @@ public partial class _Default : System.Web.UI.Page
         
 
         conn.Open();
-        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + TextBox1.Text +"','"+ TextBox2.Text +"',"+ TextBox3.Text+",'shoe/"+ fulname +"','"+ TextBox4.Text +"','"+ des +"' )";
+        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + TextBox1.Text + "','" + TextBox2.Text + "'," + TextBox3.Text + ",'shoe/" + num1.ToString()+"/"+ fulname +"','"+ TextBox4.Text +"','"+ des +"' )";
 
         
         MySqlCommand cmd2 = new MySqlCommand(insertimg, conn);

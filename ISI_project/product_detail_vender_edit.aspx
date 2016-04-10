@@ -94,8 +94,7 @@
         <br />
         <br />
         <asp:Label ID="Label4" runat="server" Font-Size="Larger" Text="Price: "></asp:Label>
-        <asp:Label ID="Label16" runat="server" Font-Size="X-Large" Height="24px" Text="Label" Width="154px"></asp:Label>
-        <asp:Button ID="Button2" runat="server" Height="36px" Text="change price of the product" Width="230px" />
+        <asp:TextBox ID="TextBox5" runat="server" Height="24px" Width="154px"></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="Label5" runat="server" Font-Size="Larger" Text="Thumbnail image: "></asp:Label>
