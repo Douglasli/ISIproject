@@ -80,7 +80,7 @@
             </table>
 
         </div>
-        <div id="div1" style="width: 100%; height: 511px; background-color: rgba(255,255,255,0.5);">
+        <div id="div1" style="width: 100%; height: 1062px; background-color: rgba(255,255,255,0.5);">
             <hr />
             <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
             <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search" Width="73px" />

@@ -77,7 +77,7 @@
             </table>
 
         </div>
-        <div style="width: 100%; height: 511px; background-color: rgba(255,255,255,0.5);">
+        <div style="width: 100%; height: 762px; background-color: rgba(255,255,255,0.5);">
             <hr />
             <br />
             <br />

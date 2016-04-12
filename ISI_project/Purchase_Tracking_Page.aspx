@@ -73,6 +73,45 @@
             width: 214px;
             height: 23px;
         }
+
+        .rtable {
+            border-bottom: thin solid #000000; 
+            font-family: Arial; 
+            width: 120%; 
+            font-size: large;
+        }
+
+        .rtable th {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+	        background-color: rgba(	0,191,255,0.1);
+            
+        }
+
+        .rtable tr {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+            
+        }
+
+        .rtd{
+            padding-bottom: 8px;
+            padding-top: 8px;
+            
+        }
+
+                .button {
+            border: 0px solid #FFFFFF; 
+            width: 100%; height: 100%; 
+            background-color: rgba(255,255,255,0.1);
+            font-family: Arial;        
+        }
+        .auto-style47 {
+            height: 23px;
+            width: 650px;
+        }
     </style>
 </head>
 <body style="background-image: url('/images/backlogin.jpg'); height: 565px;">
@@ -110,12 +149,12 @@
             <br />
             <br />
             <div>
-                <table id="User_pro" class="auto-style26" style="margin-top: 0px;">
+                <table id="User_pro" class="auto-style26" style="margin-top: 0px; vertical-align: top;">
                     <tr>
                         <td class="auto-style43" rowspan="2">
                             <asp:Button runat="server" ID="User_Profile" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/Customer_Page.aspx" Text="Profile" /></td>
-                        <td class="auto-style36" style="font-family: 'Arial Unicode MS';" rowspan="7" colspan="2">
-                            <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" Height="27px" Width="519px">
+                        <td class="auto-style36" style="font-family: 'Arial Unicode MS'; vertical-align: top;" rowspan="7" colspan="2">
+                            <%--<asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" Height="27px" Width="519px">
                                 <Columns>
                                     <asp:HyperLinkField DataNavigateUrlFormatString="Purchase_Tracking_Detail_Page.aspx?p={0}" DataTextField="poNum" HeaderText="Purchase Number" NavigateUrl="~/Purchase_Tracking_Detail_Page.aspx" DataNavigateUrlFields="poNum" />
                                     <asp:BoundField DataField="purchaseDate" HeaderText="Purchase Date" />
@@ -147,7 +186,61 @@
                                         </tr>
                                     </table>
                                 </EmptyDataTemplate>
-                            </asp:GridView>
+                            </asp:GridView>--%>
+                            <br />
+                            <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand">
+                                <HeaderTemplate>
+                                    <table class="rtable" id="tracking1">
+                                        <th>Detail</th>
+                                        <th>Purchase Number</th>
+                                        <th>Purchase Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        
+                                </HeaderTemplate>
+
+                                <ItemTemplate> 
+                                    
+                                    <tr>
+                                    <td class="rtd"><asp:Button class="button" ID="detail1" CommandName="detail" CommandArgument='<%#Eval("poNum") %>' runat="server" Text="Detail" /></td>
+                                    <td class="rtd"><%#Eval("poNum") %></td>
+                                    <td class="rtd"><%#Eval("purchaseDate") %></td>
+                                    <td class="rtd"><%#Eval("status") %></td>
+                                    <td class="rtd"><%#Eval("total") %></td> 
+                                    </tr>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                    </table id="tracking1">
+                                </FooterTemplate>
+                                </asp:Repeater>
+                            <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="Repeater2_ItemCommand">
+                                <HeaderTemplate>
+                                    <table class="rtable" id="tracking2">
+                                        <th>Detail</th>
+                                        <th>Purchase Number</th>
+                                        <th>Purchase Date</th>
+                                        <th>Status</th>
+                                        
+                                        
+                                </HeaderTemplate>
+
+                                <ItemTemplate> 
+                                    
+                                    <tr>
+                                    <td class="rtd"><asp:Button class="button" ID="detail2" CommandName="detail" CommandArgument='<%#Eval("poNum") %>' runat="server" Text="Detail" /></td>
+                                    <td class="rtd"><%#Eval("poNum") %></td>
+                                    <td class="rtd"><%#Eval("purchaseDate") %></td>
+                                    <td class="rtd"><%#Eval("status") %></td>
+                                     
+                                    </tr>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                    </table id="tracking2">
+                                </FooterTemplate>
+                                </asp:Repeater>
+                                    
+                            <br />
+                            <br />
                         </td>
                         <td class="auto-style44" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
@@ -184,7 +277,7 @@
                         <td class="auto-style46" style="font-family: 'Arial Unicode MS';">
                             <asp:Button runat="server" ID="c_p" Style="border: 0px solid #FFFFFF; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large; margin-left: 0px;" Text="Current Purchase" Height="100%" OnClick="c_p_Click" Width="100%" />
                         </td>
-                        <td class="auto-style38" style="font-family: 'Arial Unicode MS';">
+                        <td class="auto-style47" style="font-family: 'Arial Unicode MS';">
                             <asp:Button runat="server" ID="p_p" Style="border: 0px solid #FFFFFF; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large; margin-left: 0px;" Text="Past Purchase" Height="100%" OnClick="p_p_Click" Width="100%" />
                         </td>
                         <td class="auto-style38" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left"></td>

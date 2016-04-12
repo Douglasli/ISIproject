@@ -54,7 +54,7 @@
 
     </script>
     </head>
-<body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image:url('/images/backlogin.jpg'); height: 2312px; margin-bottom: 15px;">
     <form id="form1" runat="server" enctype="multipart/form-data">
     <div style="width:100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
         <table style="width:100%; height: 100%;">

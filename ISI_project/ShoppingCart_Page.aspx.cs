@@ -34,51 +34,56 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
+    private void BindToRepeater(DataTable dt) {
+        Repeater1.DataSource = dt.DefaultView;
+        Repeater1.DataBind();
+    }
+
 
     protected void Logout_Click(object sender, EventArgs e)
     {
         Session.Abandon();
         Response.Redirect("Homepage.aspx");
     }
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        string sqlStr = "delete from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+    //protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    //{
+    //    string sqlStr = "delete from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
 
-        MySqlCommand mySqlCmd = new MySqlCommand(sqlStr, mySqlConn);
-        mySqlCmd.ExecuteNonQuery();
-        bind();
-    }
+    //    MySqlCommand mySqlCmd = new MySqlCommand(sqlStr, mySqlConn);
+    //    mySqlCmd.ExecuteNonQuery();
+    //    bind();
+    //}
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         //System.Diagnostics.Debug.Write(e.CommandName);  
     }
-    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        int id = Convert.ToInt32(GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString());
-    }
-    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-    {
-        GridViewRow gvr = GridView1.Rows[e.RowIndex];
-        int quantity = int.Parse(((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim());
+    //protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    int id = Convert.ToInt32(GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString());
+    //}
+    //protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    //{
+    //    GridViewRow gvr = GridView1.Rows[e.RowIndex];
+    //    int quantity = int.Parse(((TextBox)(GridView1.Rows[e.RowIndex].Cells[2].Controls[0])).Text.ToString().Trim());
 
-        string sql = "update cart set quantity='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
-        System.Diagnostics.Debug.Write(sql);
-        MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
-        mySqlCmd.ExecuteNonQuery();
-        bind();
-    }
-    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-    {
-        GridView1.EditIndex = -1;
-        bind();
-    }
-    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
-    {
-        //int index = Convert.ToInt32(GridView1.DataKeys[e.NewEditIndex].Value);  
-        GridView1.EditIndex = e.NewEditIndex;
-        bind();
+    //    string sql = "update cart set quantity='" + quantity + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=(SELECT itemid from item where name ='" + GridView1.DataKeys[e.RowIndex].Value.ToString() + "');";
+    //    System.Diagnostics.Debug.Write(sql);
+    //    MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
+    //    mySqlCmd.ExecuteNonQuery();
+    //    bind();
+    //}
+    //protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    //{
+    //    GridView1.EditIndex = -1;
+    //    bind();
+    //}
+    //protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    //{
+    //    //int index = Convert.ToInt32(GridView1.DataKeys[e.NewEditIndex].Value);  
+    //    GridView1.EditIndex = e.NewEditIndex;
+    //    bind();
 
-    }
+    //}
     public void bind()
     {
         string sql = "select item.itemid, item.name,cart.quantity,item.price,item.price*cart.quantity as total from item,cart,user where item.itemid=cart.itemid and user_id=uid and user_id=(Select user_id from user where username=" + "'" + Session["username"].ToString() + "')";
@@ -89,10 +94,14 @@ public partial class _Default : System.Web.UI.Page
             using (DataTable dt = new DataTable())
             {
                 sda.Fill(dt);
-                GridView1.DataSource = dt;
+                //GridView1.DataSource = dt;
 
-                GridView1.DataKeyNames = new string[] { "name" };
-                GridView1.DataBind();
+                //GridView1.DataKeyNames = new string[] { "name" };
+                //GridView1.DataBind();
+
+                Repeater1.DataSource = dt;
+                Repeater1.DataBind();
+
                 n = dt.Rows.Count;
                 if (n != 0)
                 {
@@ -113,7 +122,7 @@ public partial class _Default : System.Web.UI.Page
                 if (dt.Rows[0]["total"].ToString() == "")
                 {
                     Total.Visible = false;
-
+                    
                 }
             }
         }
@@ -158,5 +167,11 @@ public partial class _Default : System.Web.UI.Page
             //Redirect to purchase page
             Response.Redirect("Purchase_Tracking_Detail_Page.aspx?p=" + dataset1.Tables[0].Rows[0]["poNum"].ToString());
         
+    }
+
+    protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e) { 
+         if (e.CommandName == "detail"){
+             Response.Redirect("/ProductDetail_page.aspx?id=" + e.CommandArgument);         
+         }
     }
 }
