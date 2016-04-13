@@ -32,7 +32,8 @@ public partial class _Default : System.Web.UI.Page
         num1 = num1 + 1;
         conn.Close();
 
-        string fulname = FileUpload1.PostedFile.FileName;
+        string fulname = "";
+        fulname=FileUpload1.PostedFile.FileName;
         FileInfo fi = new FileInfo(fulname);
         string filename = fi.Name;
         string filefulname = fi.FullName;
@@ -87,9 +88,20 @@ public partial class _Default : System.Web.UI.Page
 
         conn.Close();
         
-
         conn.Open();
-        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + TextBox1.Text + "','" + TextBox2.Text + "'," + TextBox3.Text + ",'shoe/" + num1.ToString()+"/"+ fulname +"','"+ TextBox4.Text +"','"+ des +"' )";
+
+        string t1 = "";
+        t1 = TextBox1.Text;
+        string t2 = "";
+        t2 = TextBox2.Text;
+        string t3 = "";
+        t3 = TextBox3.Text;
+        string foname = "";
+        foname = num1.ToString();
+        string t4 = "";
+        t4 = TextBox4.Text;
+
+        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + t1 + "','" + t2 + "'," + t3 + ",'shoe/" + foname+"/"+ fulname +"','"+ t4 +"','"+ des +"' )";
 
         
         MySqlCommand cmd2 = new MySqlCommand(insertimg, conn);

@@ -141,7 +141,9 @@ public partial class _Default : System.Web.UI.Page
         MySqlCommand cm1 = new MySqlCommand(sql1, conn);
         MySqlDataReader re1 = cm1.ExecuteReader();
         re1.Read();
+        
         string buf1 = (string)re1[0];
+        
         string des = (string)re1[1];
         conn.Close();
 
