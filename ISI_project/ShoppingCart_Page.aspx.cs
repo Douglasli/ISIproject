@@ -173,5 +173,23 @@ public partial class _Default : System.Web.UI.Page
          if (e.CommandName == "detail"){
              Response.Redirect("/ProductDetail_page.aspx?id=" + e.CommandArgument);         
          }
+         else if (e.CommandName == "edit") {
+                 RepeaterItem item = Repeater1.Items[e.Item.ItemIndex];
+                 TextBox txt = (TextBox)item.FindControl("new_quantity");
+                 int quan = int.Parse(txt.Text);
+                 string sql = "update cart set quantity='" + quan + "'where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid="+ e.CommandArgument;
+                 System.Diagnostics.Debug.Write(sql);
+                 MySqlCommand mySqlCmd = new MySqlCommand(sql, mySqlConn);
+                 mySqlCmd.ExecuteNonQuery();
+                 bind();
+            
+         }
+         else if (e.CommandName == "delete") {
+             string sqlStr = "delete from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "') and itemid=" + e.CommandArgument;
+
+             MySqlCommand mySqlCmd = new MySqlCommand(sqlStr, mySqlConn);
+             mySqlCmd.ExecuteNonQuery();
+             bind();
+         }
     }
 }

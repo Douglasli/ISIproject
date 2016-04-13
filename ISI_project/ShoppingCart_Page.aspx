@@ -27,7 +27,7 @@
         }
 
         .auto-style26 {
-            width: 923px;
+            width: 1002px;
             height: 20px;
         }
 
@@ -85,7 +85,7 @@
 
         </style>
 </head>
-<body style="background-image: url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image: url('/images/backlogin.jpg'); height: 2554px;">
     <form id="form1" runat="server">
         <div style="width: 100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
             <table style="width: 100%; height: 100%;">
@@ -132,7 +132,7 @@
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Total</th>
-                                        <th>Edit</th>
+                                        <th>Edit Amount</th>
                                         <th>Delete</th>
                                         
                                 </HeaderTemplate>
@@ -145,7 +145,7 @@
                                     <td class="rtd"><%#Eval("quantity") %></td>
                                     <td class="rtd"><%#Eval("price") %></td>
                                     <td class="rtd"><%#Eval("total") %></td> 
-                                    <td class="rtd"><asp:Button class="button" ID="Button4" CommandName="edit" CommandArgument='<%#Eval("itemid") %>' runat="server" Text="Edit" /></td>
+                                    <td class="rtd"><asp:TextBox ID="new_quantity" runat="server" width="100%"></asp:TextBox><asp:Button class="button" ID="Button4" CommandName="edit" CommandArgument='<%#Eval("itemid")%>' runat="server" Text="Apply change" /></td>
                                     <td class="rtd"><asp:Button class="button" ID="Button5" CommandName="delete" CommandArgument='<%#Eval("itemid") %>' runat="server" Text="Delete" /></td> 
                                     </tr>
                                 </ItemTemplate> 
@@ -166,7 +166,8 @@
                             <asp:Image ID="Image1" runat="server" Height="185px" ImageUrl="~/images/System Box Empty.png" Width="187px" />
                             
                         </td>
-                        <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <td class="auto-style49" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
                     <tr>
