@@ -94,8 +94,8 @@
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show {0}'s Detail" />
                     <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />
-                    <asp:BoundField DataField="brand" HeaderText="Price" ReadOnly="true" />
-                    <asp:BoundField DataField="price" HeaderText="Quantity" HtmlEncode="False" />
+                    <asp:BoundField DataField="brand" HeaderText="Brand" ReadOnly="true" />
+                    <asp:BoundField DataField="price" HeaderText="Price" HtmlEncode="False" />
                     <asp:BoundField DataField="thumbnailimage" HeaderText="Thumbnail image" HtmlEncode="False" />
                 </Columns>
             </asp:GridView>
