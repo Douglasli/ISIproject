@@ -46,7 +46,7 @@ public partial class _Default : System.Web.UI.Page
         Label2.Text = dataset.Tables[0].Rows[0]["category"].ToString();
         Label3.Text = dataset.Tables[0].Rows[0]["price"].ToString();
         Label4.Text = dataset.Tables[0].Rows[0]["description"].ToString();
-        Image1.ImageUrl = "~/App_Img" + dataset.Tables[0].Rows[0]["detailphoto"].ToString();
+        Image1.ImageUrl =  dataset.Tables[0].Rows[0]["detailphoto"].ToString();
         
 
     }
