@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50155
 File Encoding         : 65001
 
-Date: 2016-04-10 12:19:01
+Date: 2016-04-14 17:25:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,6 +46,18 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for notification
+-- ----------------------------
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE `notification` (
+  `user_id` int(11) unsigned NOT NULL,
+  `nid` int(11) NOT NULL,
+  `content` text,
+  `status` set('1','0') DEFAULT NULL,
+  PRIMARY KEY (`user_id`,`nid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Table structure for orderitem
 -- ----------------------------
 DROP TABLE IF EXISTS `orderitem`;
@@ -76,7 +88,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`poNum`),
   KEY `uid` (`uid`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`User_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for rating
@@ -85,14 +97,31 @@ DROP TABLE IF EXISTS `rating`;
 CREATE TABLE `rating` (
   `user_id` int(11) NOT NULL,
   `poNum` int(11) NOT NULL,
-  `itemid` int(11) DEFAULT NULL,
+  `itemid` int(11) NOT NULL,
   `stars` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`poNum`),
+  PRIMARY KEY (`user_id`,`poNum`,`itemid`),
   KEY `poNum` (`poNum`),
   KEY `itemid` (`itemid`),
   CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`User_id`),
   CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`poNum`) REFERENCES `orders` (`poNum`),
   CONSTRAINT `rating_ibfk_3` FOREIGN KEY (`itemid`) REFERENCES `item` (`itemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for review
+-- ----------------------------
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE `review` (
+  `user_id` int(11) NOT NULL,
+  `poNum` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL,
+  `comment` text,
+  PRIMARY KEY (`user_id`,`poNum`,`itemid`),
+  KEY `poNum` (`poNum`),
+  KEY `itemid` (`itemid`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`User_id`),
+  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`poNum`) REFERENCES `orders` (`poNum`),
+  CONSTRAINT `review_ibfk_3` FOREIGN KEY (`itemid`) REFERENCES `item` (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
