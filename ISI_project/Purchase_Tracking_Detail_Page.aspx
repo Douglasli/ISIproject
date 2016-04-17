@@ -56,7 +56,6 @@
             width: 80%; 
             font-size: large;
         }
-
         .rtable th {
             border-bottom-width: 1px;
 	        border-bottom-style: solid;
@@ -64,20 +63,17 @@
 	        background-color: rgba(	0,191,255,0.1);
             
         }
-
         .rtable tr {
             border-bottom-width: 1px;
 	        border-bottom-style: solid;
 	        border-color: #666666;
             
         }
-
         .rtd{
             padding-bottom: 8px;
             padding-top: 8px;
             
         }
-
                 .button {
             border: 0px solid #FFFFFF; 
             width: 100%; height: 100%; 

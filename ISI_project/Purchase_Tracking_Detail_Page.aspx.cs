@@ -33,31 +33,40 @@ public partial class _Default : System.Web.UI.Page
                 bind(poNum);
 
             }
-            
+
         }
 
 
     }
 
     public void bind(String poNum)
-    {
+    {//get status
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.canDate,orders.canType,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
         DataSet dataset = new DataSet();
-
         DataAdapter1.Fill(dataset, "isi");
-
-        //String poNo = dataset.Tables[0].Rows[0]["poNum"].ToString();
-
-        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price,orderitem.quantity * item.price as total  from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
-        DataSet dataset2 = new DataSet();
-
-        DataAdapter2.Fill(dataset2, "isi");
-
+        String status = dataset.Tables[0].Rows[0]["status"].ToString();
+        // show  order information
+        if (status == "canceled")
+        {
+        }
+        else if (status == "shipped")
+        {
+            DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,orders.shipDate,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
+            dataset = new DataSet();
+            DataAdapter1.Fill(dataset, "isi");
+        }
+        else {
+            DataAdapter1 = new MySqlDataAdapter("select orders.poNum,orders.purchaseDate,user.Username,orders.shipAddress,orders.status from orders,user where poNum=" + "'" + poNum + "'and user.User_id=orders.uid", mySqlConn);
+            dataset = new DataSet();
+            DataAdapter1.Fill(dataset, "isi");
+        }
         GridView1.DataSource = dataset;
         GridView1.DataKeyNames = new string[] { "poNum" };
         GridView1.DataBind();
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price,orderitem.quantity * item.price as total  from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
+        DataSet dataset2 = new DataSet();
+        DataAdapter2.Fill(dataset2, "isi");
 
-        String status = dataset.Tables[0].Rows[0]["status"].ToString();
         if (status == "shipped")
         {
             Repeater1.DataSource = dataset2;
@@ -70,9 +79,10 @@ public partial class _Default : System.Web.UI.Page
             Repeater1.Visible = false;
         }
 
-        
 
-        if((dataset.Tables[0].Rows[0]["status"].ToString() == "shipped") | (dataset.Tables[0].Rows[0]["status"].ToString() == "canceled")){
+
+        if ((dataset.Tables[0].Rows[0]["status"].ToString() == "shipped") | (dataset.Tables[0].Rows[0]["status"].ToString() == "canceled"))
+        {
             Cancel_btn.Visible = false;
         }
 
@@ -95,7 +105,7 @@ public partial class _Default : System.Web.UI.Page
         MySqlCommand cmd1 = new MySqlCommand(sql1, mySqlConn);
         cmd1.ExecuteNonQuery();
 
-        String sql2 = "update orders set status ='canceled' where poNum='"+pn+"'";
+        String sql2 = "update orders set status ='canceled', canType='customer',canDate=CURDATE() where poNum='" + pn + "'";
         MySqlCommand cmd2 = new MySqlCommand(sql2, mySqlConn);
         cmd2.ExecuteNonQuery();
         bind(pn);
@@ -115,19 +125,19 @@ public partial class _Default : System.Web.UI.Page
             int poNum = Convert.ToInt32(estr[0]);
             int itemid = Convert.ToInt32(estr[1]);
 
-            MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select * from rating where user_id='"+Session["uid"].ToString()+"' and poNum="+poNum+" and itemid="+itemid, mySqlConn);
+            MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select * from rating where user_id='" + Session["uid"].ToString() + "' and poNum=" + poNum + " and itemid=" + itemid, mySqlConn);
             DataSet ds = new DataSet();
             DataAdapter1.Fill(ds, "isi");
             if (ds.Tables[0].Rows.Count > 0)
             {
-                Response.Write("<script>alert('You have already rated and reviewed')</script>"); 
-               
+                Response.Write("<script>alert('You have already rated and reviewed')</script>");
+
             }
             else {
                 Response.Redirect("/Rating_review.aspx?p=" + poNum + "&i=" + itemid);
             }
-            
-            
+
+
         }
     }
 }
