@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50155
 Source Host           : localhost:3306
-Source Database       : isi
+Source Database       : test
 
 Target Server Type    : MYSQL
 Target Server Version : 50155
 File Encoding         : 65001
 
-Date: 2016-04-14 17:25:17
+Date: 2016-04-18 00:03:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,10 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of cart
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for item
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
@@ -46,6 +50,11 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of item
+-- ----------------------------
+INSERT INTO `item` VALUES ('1', 'nike1', 'nike', '688', '/001.png', '12345', '/001.png', 'Shoes');
+
+-- ----------------------------
 -- Table structure for notification
 -- ----------------------------
 DROP TABLE IF EXISTS `notification`;
@@ -56,6 +65,10 @@ CREATE TABLE `notification` (
   `status` set('1','0') DEFAULT NULL,
   PRIMARY KEY (`user_id`,`nid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of notification
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for orderitem
@@ -73,6 +86,10 @@ CREATE TABLE `orderitem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of orderitem
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for orders
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
@@ -88,7 +105,11 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`poNum`),
   KEY `uid` (`uid`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`User_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for rating
@@ -108,6 +129,10 @@ CREATE TABLE `rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of rating
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for review
 -- ----------------------------
 DROP TABLE IF EXISTS `review`;
@@ -125,6 +150,10 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of review
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -139,3 +168,7 @@ CREATE TABLE `user` (
   `Type` set('vender','customer') DEFAULT NULL,
   PRIMARY KEY (`User_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
