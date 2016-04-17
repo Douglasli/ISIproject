@@ -12,7 +12,8 @@ public partial class _Default : System.Web.UI.Page
     MySqlConnection conn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connStr"].ConnectionString);
     DataSet dataset1 = new DataSet();
 
-
+    String searchkeyword = null;
+    String filterkeyword = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((string)Session["usertype"] == "vender")
@@ -35,19 +36,28 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-
+            String sql1 = "";
+            if (ViewState["Filterstring"] == null && ViewState["SortDirection"] == null)
+            {
+                sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ";
+            }
+            else if (ViewState["Filterstring"] == null && ViewState["SortDirection"] != null)
+            {
+                sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ORDER BY" + ViewState["SortDirection"];
+            }
+            else if (ViewState["Filterstring"] != null && ViewState["SortDirection"] == null)
+            {
+                sql1 = (string)ViewState["Filterstring"];
+            }
+            else {
+                sql1 = ViewState["Filterstring"] + "ORDER BY" + ViewState["SortDirection"];
+            }
             conn.Open();
-
-            String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ";
             MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
             ada1.Fill(dataset1, "isi");
-
             GridView1.DataSource = dataset1;
             GridView1.DataKeyNames = new String[] { "name" };
             GridView1.DataBind();
-
-
-
             conn.Close();
         }
         catch (Exception ex)
@@ -56,9 +66,18 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Search_Click(object sender, EventArgs e)
     {
-        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE name LIKE '%"+ TextBox1.Text +"%'";
+        searchkeyword = TextBox1.Text;
+        String sql1 = "";
+        if (filterkeyword == null)
+        {
+            sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE name LIKE '%" + searchkeyword + "%'";
+        }
+        else {
+            sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM ("+ "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE brand = '" + ViewState["filterkeyword]"] + "'" + ") WHERE name LIKE '%" + ViewState["searchkeyword"] + "%'";
+        }
+        ViewState["Filterstring"] = sql1;
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
@@ -177,9 +196,11 @@ public partial class _Default : System.Web.UI.Page
 
 
 
-    protected void Button2_Click(object sender, EventArgs e)
+    protected void Filter_Click(object sender, EventArgs e)
     {
-        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE brand = '" + TextBox3.Text + "'";
+        filterkeyword = TextBox3.Text;
+        String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item WHERE brand = '" + filterkeyword + "'";
+        ViewState["Filterstring"] = sql1;
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {
@@ -196,7 +217,9 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
+        filterkeyword = null;
         String sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item";
+        ViewState["Filterstring"] = sql1;
         MySqlCommand cmd = new MySqlCommand(sql1, conn);
         using (MySqlDataAdapter sda = new MySqlDataAdapter())
         {

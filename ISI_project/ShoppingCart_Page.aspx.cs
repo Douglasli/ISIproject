@@ -144,7 +144,7 @@ public partial class _Default : System.Web.UI.Page
             DataAdapter1.Fill(dataset1, "isi");
 
             //SELECT itemid
-            string sql3 = "SELECT itemid,quantity from cart where uid=(Select user_id from user where username='" + Session["username"].ToString() + "');";
+            string sql3 = "SELECT itemid,quantity,price from cart,item where cart.uid=(Select user_id from user where username='" + Session["username"].ToString() + "') AND item.itemid=cart.itemid;";
             MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter(sql3, mySqlConn);
             DataSet dataset2 = new DataSet();
             DataAdapter2.Fill(dataset2, "isi");
@@ -154,8 +154,8 @@ public partial class _Default : System.Web.UI.Page
 
             for (int i = 0; i < n; i++)
             {
-                string sql5 = "INSERT into orderitem(poNum,itemid,quantity) values ('" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "','" + dataset2.Tables[0].Rows[i]["itemid"] + "','" + dataset2.Tables[0].Rows[i]["quantity"] + "')";
-                MySqlCommand cmd5 = new MySqlCommand(sql5, mySqlConn);
+                string sql5 = "INSERT into orderitem(poNum,itemid,quantity) values ('" + dataset1.Tables[0].Rows[0]["poNum"].ToString() + "','" + dataset2.Tables[0].Rows[i]["itemid"] + "','" + dataset2.Tables[0].Rows[i]["quantity"] + "',"+ dataset2.Tables[0].Rows[i]["price"] +")";
+                MySqlCommand cmd5 = new MySqlCommand(sql5, mySqlConn);http://localhost:50063/Addnewproduct.aspx.cs
                 cmd5.ExecuteNonQuery();
             }
 
