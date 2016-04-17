@@ -28,7 +28,12 @@ public partial class _Default : System.Web.UI.Page
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
 
-            bind(poNum);
+            if (!IsPostBack)
+            {
+                bind(poNum);
+
+            }
+            
         }
 
 
@@ -52,9 +57,20 @@ public partial class _Default : System.Web.UI.Page
         GridView1.DataKeyNames = new string[] { "poNum" };
         GridView1.DataBind();
 
-        GridView2.DataSource = dataset2;
-        GridView2.DataKeyNames = new string[] { "poNum" };
-        GridView2.DataBind();
+        String status = dataset.Tables[0].Rows[0]["status"].ToString();
+        if (status == "shipped")
+        {
+            Repeater1.DataSource = dataset2;
+            Repeater1.DataBind();
+            Repeater2.Visible = false;
+        }
+        else {
+            Repeater2.DataSource = dataset2;
+            Repeater2.DataBind();
+            Repeater1.Visible = false;
+        }
+
+        
 
         if((dataset.Tables[0].Rows[0]["status"].ToString() == "shipped") | (dataset.Tables[0].Rows[0]["status"].ToString() == "canceled")){
             Cancel_btn.Visible = false;
@@ -89,5 +105,29 @@ public partial class _Default : System.Web.UI.Page
     {
         Session.Abandon();
         Response.Redirect("Homepage.aspx");
+    }
+    protected void Repeater1_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "RandR")
+        {
+            string[] estr = e.CommandArgument.ToString().Split(',');
+
+            int poNum = Convert.ToInt32(estr[0]);
+            int itemid = Convert.ToInt32(estr[1]);
+
+            MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select * from rating where user_id='"+Session["uid"].ToString()+"' and poNum="+poNum+" and itemid="+itemid, mySqlConn);
+            DataSet ds = new DataSet();
+            DataAdapter1.Fill(ds, "isi");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Response.Write("<script>alert('You have already rated and reviewed')</script>"); 
+               
+            }
+            else {
+                Response.Redirect("/Rating_review.aspx?p=" + poNum + "&i=" + itemid);
+            }
+            
+            
+        }
     }
 }

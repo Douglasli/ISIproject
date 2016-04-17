@@ -220,7 +220,7 @@
                                         <th>Purchase Number</th>
                                         <th>Purchase Date</th>
                                         <th>Status</th>
-                                        
+                                        <th>Total</th>
                                         
                                 </HeaderTemplate>
 
@@ -231,6 +231,7 @@
                                     <td class="rtd"><%#Eval("poNum") %></td>
                                     <td class="rtd"><%#Eval("purchaseDate") %></td>
                                     <td class="rtd"><%#Eval("status") %></td>
+                                    
                                      
                                     </tr>
                                 </ItemTemplate> 

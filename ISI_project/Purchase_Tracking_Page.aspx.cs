@@ -24,7 +24,12 @@ public partial class _Default : System.Web.UI.Page
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
 
-            bind(uid);
+            if (!IsPostBack)
+            {
+                bind(uid);
+
+            }
+            
         }
 
 
