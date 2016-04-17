@@ -50,7 +50,7 @@ public partial class _Default : System.Web.UI.Page
                 sql1 = (string)ViewState["Filterstring"];
             }
             else {
-                sql1 = ViewState["Filterstring"] + "ORDER BY" + ViewState["SortDirection"];
+                sql1 = ViewState["Filterstring"] + "ORDER BY price " + ViewState["SortDirection"];
             }
             conn.Open();
             MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
