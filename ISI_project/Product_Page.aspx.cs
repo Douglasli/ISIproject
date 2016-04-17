@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else if (ViewState["Filterstring"] == null && ViewState["SortDirection"] != null)
             {
-                sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ORDER BY" + ViewState["SortDirection"];
+                sql1 = "SELECT itemid,name,brand,price,thumbnailimage FROM item ORDER BY price " + ViewState["SortDirection"];
             }
             else if (ViewState["Filterstring"] != null && ViewState["SortDirection"] == null)
             {

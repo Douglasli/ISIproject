@@ -92,10 +92,10 @@
         <br />
             <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" OnSorting="GridView2_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show {0}'s Detail" />
+                    <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show  Detail" />
                     <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />
                     <asp:BoundField DataField="brand" HeaderText="Brand" ReadOnly="true" />
-                    <asp:BoundField DataField="price" HeaderText="Price" HtmlEncode="False" />
+                    <asp:BoundField DataField="price" HeaderText="Price" SortExpression="GridView2_Sorting"/>
                     <asp:BoundField DataField="thumbnailimage" HeaderText="Thumbnail image" HtmlEncode="False" />
                 </Columns>
             </asp:GridView>
