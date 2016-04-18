@@ -35,7 +35,7 @@ public partial class _Default : System.Web.UI.Page
         string fulname = "";
         fulname=FileUpload1.PostedFile.FileName;
         FileInfo fi = new FileInfo(fulname);
-        string filename = fi.Name;
+        string filename = "0.jpg";
         string filefulname = fi.FullName;
         string serverpath = Server.MapPath("shoe/");
 
@@ -52,7 +52,7 @@ public partial class _Default : System.Web.UI.Page
         {
             string fulname1 = FileUpload2.PostedFile.FileName;
             FileInfo fi1 = new FileInfo(fulname1);
-            string filename1 = fi1.Name;
+            string filename1 = "1.jpg";
             string filefulname1 = fi1.FullName;
             FileUpload2.PostedFile.SaveAs(serverpath +folderno+ filename1);
             des = des + "shoe/"+folderno + filename1 +";"; }
@@ -61,7 +61,7 @@ public partial class _Default : System.Web.UI.Page
         {
             string fulname2 = FileUpload3.PostedFile.FileName;
             FileInfo fi2 = new FileInfo(fulname2);
-            string filename2 = fi2.Name;
+            string filename2 = "2.jpg";
             string filefulname2 = fi2.FullName;
             FileUpload3.PostedFile.SaveAs(serverpath +folderno+ filename2);
             des = des + "shoe/" +folderno+ filename2 + ";"; }
@@ -70,7 +70,7 @@ public partial class _Default : System.Web.UI.Page
         {
             string fulname3 = FileUpload4.PostedFile.FileName;
             FileInfo fi3 = new FileInfo(fulname3);
-            string filename3 = fi3.Name;
+            string filename3 = "3.jpg";
             string filefulname3 = fi3.FullName;
             FileUpload4.PostedFile.SaveAs(serverpath +folderno+ filename3);
             des = des + "shoe/" +folderno+ filename3 + ";"; }
@@ -79,7 +79,7 @@ public partial class _Default : System.Web.UI.Page
         {
             string fulname4 = FileUpload5.PostedFile.FileName;
             FileInfo fi4 = new FileInfo(fulname4);
-            string filename4 = fi4.Name;
+            string filename4 = "4.jpg";
             string filefulname4 = fi4.FullName;
             FileUpload5.PostedFile.SaveAs(serverpath +folderno+filename4);
             des = des + "shoe/" +folderno+ filename4 + ";"; }

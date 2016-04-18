@@ -158,15 +158,10 @@ public partial class _Default : System.Web.UI.Page
             {
                string fulname = FileUpload1.PostedFile.FileName;
                FileInfo fi = new FileInfo(fulname);
-               string filename = fi.Name;
+               string filename = "0.jpg";
                string filefulname = fi.FullName;
-            string dt = "a";
-            if (File.Exists(serverpath+de4 + fulname)) {
-                filename = dt+filename;
-                fulname = dt + fulname;
-            }
                FileUpload1.PostedFile.SaveAs(serverpath +de4+ filename);
-               buf1 = "/shoe/"+de4 +fulname;
+               buf1 = "/shoe/"+de4+filename;
             
             }
         
@@ -174,48 +169,40 @@ public partial class _Default : System.Web.UI.Page
         {
             string fulname1 = up1.PostedFile.FileName;
             FileInfo fi1 = new FileInfo(fulname1);
-            string filename1 = fi1.Name;
+            string filename1 = "1.jpg";
             string filefulname1 = fi1.FullName;
-            string dt1 = "e";
-            if (File.Exists(serverpath +de4+ fulname1)) { filename1 = dt1 + filename1; fulname1 = dt1 + fulname1; }
             up1.PostedFile.SaveAs(serverpath +de4+ filename1);
-            des = des + "/shoe/"+de4+ fulname1 + ";";
+            des = des + "/shoe/"+de4+ filename1 + ";";
         }
 
         if (up2.FileName!="")
         {
             string fulname2 = up2.PostedFile.FileName;
             FileInfo fi2 = new FileInfo(fulname2);
-            string filename2 = fi2.Name;
+            string filename2 = "2.jpg";
             string filefulname2 = fi2.FullName;
-            string dt2 = "i";
-            if (File.Exists(serverpath +de4+ fulname2)) { filefulname2 = dt2 + filefulname2; fulname2 = dt2 + fulname2; }
             up2.PostedFile.SaveAs(serverpath +de4+ filename2);
-            des = des + "/shoe/"+de4+ fulname2 + ";";
+            des = des + "/shoe/"+de4+ filename2 + ";";
         }
 
         if (up3.FileName != "" )
         {
             string fulname3 = up3.PostedFile.FileName;
             FileInfo fi3 = new FileInfo(fulname3);
-            string filename3 = fi3.Name;
+            string filename3 = "3.jpg";
             string filefulname3 = fi3.FullName;
-            string dt3 = "o";
-            if (File.Exists(serverpath +de4+ fulname3)) { filename3 = dt3 + filename3; fulname3 = dt3 + fulname3; }
             up3.PostedFile.SaveAs(serverpath +de4+ filename3);
-            des = des + "/shoe/" +de4 + fulname3 + ";";
+            des = des + "/shoe/" +de4 + filename3 + ";";
         }
 
         if (up4.FileName != "")
         {
             string fulname4 = up4.PostedFile.FileName;
             FileInfo fi4 = new FileInfo(fulname4);
-            string filename4 = fi4.Name;
+            string filename4 = "4.jpg";
             string filefulname4 = fi4.FullName;
-            string dt4 = "u";
-            if (File.Exists(serverpath +de4+ fulname4)) { filefulname4 = dt4 + filefulname4; fulname4 = dt4 + fulname4; }
             up4.PostedFile.SaveAs(serverpath +de4+ filename4);
-            des = des + "/shoe/" + de4 + fulname4 + ";";
+            des = des + "/shoe/" + de4 + filename4 + ";";
         }
 
         

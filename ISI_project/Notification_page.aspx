@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Customer_Page.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Notification_page.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html>
 
@@ -31,15 +31,6 @@
             height: 257px;
         }
 
-        .auto-style30 {
-            height: 23px;
-        }
-
-        .auto-style31 {
-            width: 167px;
-            height: 29px;
-        }
-
         .auto-style33 {
             width: 167px;
             height: 23px;
@@ -50,18 +41,46 @@
             height: 51px;
         }
 
-        .auto-style35 {
-            height: 29px;
-        }
-
         .auto-style36 {
-            height: 29px;
-            width: 216px;
         }
 
         .auto-style37 {
             height: 23px;
-            width: 216px;
+            }
+         .rtable {
+            border-bottom: thin solid #000000; 
+            font-family: Arial; 
+            width: 80%; 
+            font-size: large;
+            
+        }
+
+        .rtable th {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+	        background-color: rgba(	0,191,255,0.1);
+            
+        }
+
+        .rtable tr {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+            
+        }
+
+        .rtd{
+            padding-bottom: 8px;
+            padding-top: 8px;
+            
+        }
+
+                .button {
+            border: 0px solid #FFFFFF; 
+            width: 100%; height: 100%; 
+            background-color: rgba(255,255,255,0.1);
+            font-family: Arial;        
         }
     </style>
 </head>
@@ -102,65 +121,55 @@
             <div>
                 <table id="User_pro" class="auto-style26" style="margin-top: 0px;">
                     <tr>
-                        <td class="auto-style34" rowspan="2">
+                        <td class="auto-style34">
                             <asp:Button runat="server" ID="User_Profile" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/Customer_Page.aspx" Text="Profile" /></td>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">User ID:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: center; font-size: x-large; border-left-style: double; border-left-width: medium; vertical-align: top;" rowspan="4"><asp:Button runat="server" ID="read_noti" Style="border: 0px solid #FFFFFF; width: 80%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" Text="Read all notification" OnClick="read_noti_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Repeater ID="Repeater1" runat="server" >
+                                <HeaderTemplate>
+                                    <table class="rtable" id="nofity">
+                                        <th>Notification_id</th>
+                                        <th>Content</th>
+                                        <th>Status</th>
+                                        
+                                </HeaderTemplate>
+
+                                <ItemTemplate> 
+                                    
+                                    <tr>
+                                    <td class="rtd"><%#Eval("nid") %></td>
+                                    <td class="rtd"><%#Eval("content") %></td>
+                                    <td class="rtd"><%# GetStatus(Eval("status")) %></td>
+                                     
+                                    </tr>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                    </table id="notify">
+                                </FooterTemplate>
+                                </asp:Repeater>
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">User Name:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style34" rowspan="2">
+                        <td class="auto-style34">
                             <asp:Button runat="server" ID="Shopping_Cart" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/ShoppingCart_Page.aspx" Text="Shopping Cart" /></td>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">First Name:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                        </td>
                     </tr>
                     <tr>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Last Name:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style34" rowspan="2">
+                        <td class="auto-style34">
                             <asp:Button runat="server" ID="Purchase_Tracking" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/Purchase_Tracking_Page.aspx" Text="Purchase Tracking" /></td>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Email:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Address:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style31">
-                            <asp:Button runat="server" ID="Homepage3" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/ChangePW_Page.aspx" Text="Change Password" /></td>
-                        <td class="auto-style36" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">Type:</td>
-                        <td class="auto-style35" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style33">
-                            <asp:Button runat="server" ID="notify" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/Notification_page.aspx" Text="Notification" /></td>
-                        <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">&nbsp;</td>
-                        <td class="auto-style30" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left">&nbsp;</td>
+                            <asp:Button runat="server" ID="Homepage3" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" PostBackUrl="~/ChangePW_Page.aspx" Text="Change Password" /></td>
                     </tr>
                     <tr>
-                        <td class="auto-style33">&nbsp;</td>
+                        <td class="auto-style33">
+                            <asp:Button runat="server" ID="notify" Style="border: 0px solid #FFFFFF; width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); font-family: 'Buxton Sketch'; font-style: normal; font-size: large;" Text="Notification" /></td>
                         <td class="auto-style37" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: right; font-size: x-large; border-left-style: double; border-left-width: medium;">&nbsp;</td>
-                        <td class="auto-style30" style="font-family: 'Buxton Sketch'; font-weight: normal; text-align: left">&nbsp;</td>
                     </tr>
                 </table>
             </div>

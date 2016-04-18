@@ -38,11 +38,24 @@ public partial class _Default : System.Web.UI.Page
         cmd.Parameters.AddWithValue("@address", TextBox4.Text);
         var password = TextBox5.Text;
         var hashed="";
-       hashed = FormsAuthentication.HashPasswordForStoringInConfigFile(password,"SHA1");
+        hashed = FormsAuthentication.HashPasswordForStoringInConfigFile(password,"SHA1");
         cmd.Parameters.AddWithValue("@password", hashed);
         cmd.Parameters.AddWithValue("@type", RadioButtonList1.Text);
         cmd.ExecuteNonQuery();
         Session["username"] = TextBox7.Text;
+
+        string sql = "select user_id from user where username='" + Session["username"].ToString()+ "'";
+        MySqlDataAdapter ada = new MySqlDataAdapter(sql, mySqlConn);
+        DataSet dataset = new DataSet();
+        ada.Fill(dataset, "isi");
+        int uid = int.Parse(dataset.Tables[0].Rows[0]["user_id"].ToString());
+
+
+        String notify = "Thanks for your registration!";
+        string str = "insert into notification (user_id,content,status) values ('" + uid + "','" + notify + "','1')";
+        MySqlCommand cmd2 = new MySqlCommand(str, mySqlConn);
+        cmd2.ExecuteNonQuery();
+        
         Response.Redirect("Homepageafterlogin.aspx");
     }
 }

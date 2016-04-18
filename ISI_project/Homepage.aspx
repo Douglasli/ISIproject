@@ -27,7 +27,7 @@
         }
         </style>
     </head>
-<body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image:url('/images/backlogin.jpg'); height: 600px">
     <form id="form1" runat="server">
     <div style="width:100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
         <table style="width:100%; height: 100%;">
@@ -54,7 +54,7 @@
         </table>
 
         </div>
-    <div style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div style="width:100%;height: 550px; background-color: rgba(255,255,255,0.5);">
         <hr />
         <br />
         <br />

@@ -93,7 +93,7 @@
 
         </div>
         <hr />
-    <div style="width:100%;height: 1019px; background-color: rgba(255,255,255,0.5);">
+    <div style="width:100%;height: 100%; background-color: rgba(255,255,255,0.5);">
         <br />
         <br />
         <br />

@@ -24,6 +24,20 @@ public partial class _Default : System.Web.UI.Page
             mySqlConn = new MySqlConnection(connStr);
             mySqlConn.Open();
             bind(username);
+
+
+            MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter("select sum(status) as t from notification where user_id='" + Session["uid"].ToString() + "'", mySqlConn);
+            DataSet dataset = new DataSet();
+            DataAdapter1.Fill(dataset, "isi");
+            
+                int total = int.Parse(dataset.Tables[0].Rows[0]["t"].ToString());
+
+                if (total > 0)
+                {
+                    notify.Style["background-color"] = "rgba(255,0,0,0.8)";
+                }
+           
+
         }
         
 

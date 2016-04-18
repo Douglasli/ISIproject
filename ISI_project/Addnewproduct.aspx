@@ -24,7 +24,7 @@
         }
         </style>
     </head>
-<body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image:url('/images/backlogin.jpg'); height: 100%;">
     <form id="form1" runat="server">
     <div style="width:100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
         <table style="width:100%; height: 100%;">
@@ -72,16 +72,16 @@
         <asp:Label ID="Label4" runat="server" Text="Thumbnail image: "></asp:Label>
         <asp:FileUpload ID="FileUpload1" runat="server" Height="28px" Width="216px" />
 &nbsp;
-        <br />
+        you can only upload &quot;.jpg&quot; format image<br />
         <br />
         <asp:Label ID="Label5" runat="server" Text="Detail Information: "></asp:Label>
         <asp:TextBox ID="TextBox4" runat="server" Height="23px" Width="236px"></asp:TextBox>
-&nbsp;<asp:Label ID="Label6" runat="server" Text="Use ';' to seperate"></asp:Label>
+&nbsp;<asp:Label ID="Label6" runat="server" Text="Use ';' to seperate, and end with &quot;;&quot;"></asp:Label>
         <br />
         <br />
         <asp:Label ID="Label7" runat="server" Text="Detail photo: "></asp:Label>
         &nbsp;<asp:FileUpload ID="FileUpload2" runat="server" Height="25px" Width="300px" />
-        <br />
+        &nbsp;&nbsp; you can only upload &quot;.jpg&quot; format image<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:FileUpload ID="FileUpload3" runat="server" Height="25px" Width="300px" />
         <br />
