@@ -18,7 +18,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if ((string)Session["usertype"] != "vender")
         {
-          //  Response.Redirect("Login_Page.aspx");
+            Response.Redirect("Login_Page.aspx");
         }
         if (Session["username"] != null)
         {

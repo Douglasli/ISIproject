@@ -96,7 +96,7 @@
         <br />
             <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" PageSize="4" AutoGenerateColumns="False">
                 <Columns>
-                    <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show  Detail" />
+                    <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="product_detail_vender.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show  Detail" />
                     <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />
                     <asp:BoundField DataField="salesamount" HeaderText="Sales Quantities " />
                     <asp:BoundField DataField="salesquantities" HeaderText="Sales Amount" />
