@@ -45,6 +45,43 @@
         .style5 {
             width: 384px;
         }
+         .rtable {
+            border-bottom: thin solid #000000; 
+            font-family: Arial; 
+            width: 80%; 
+            font-size: large;
+        }
+
+        .rtable th {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+	        background-color: rgba(	0,191,255,0.1);
+            
+        }
+
+        .rtable tr {
+            border-bottom-width: 1px;
+	        border-bottom-style: solid;
+	        border-color: #666666;
+            
+        }
+
+        .rtd{
+            padding-bottom: 8px;
+            padding-top: 8px;
+            
+        }
+
+                .button {
+            border: 0px solid #FFFFFF; 
+            width: 100%; height: 100%; 
+            background-color: rgba(255,255,255,0.1);
+            font-family: Arial;        
+        }
+        .auto-style25 {
+            height: 20px;
+        }
     </style>
 </head>
 <body style="background-image: url('/images/backlogin.jpg'); height: 565px;">
@@ -81,10 +118,10 @@
             <hr />
             <br />
             <br />
-            <table class="style1">
+            <table class="style1" style="text-align: center">
                 <tr>
                     <td>
-                        <asp:Label ID="pname" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="pname" runat="server" Text="Label" Font-Bold="True" Font-Size="XX-Large" style="text-align: center"></asp:Label>
                     </td>
                 </tr>
             </table>
@@ -93,19 +130,19 @@
                     <td class="style5" rowspan="7">
                         <asp:Image ID="Image1" runat="server" Height="240px" Width="251px" />
                     </td>
-                    <td class="style2">Category:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                    <td class="style2"><strong>Average Rating:</strong><asp:Label ID="Label2" runat="server" Text="0" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/images/85-jishiejs (1308).png" />
                     </td>
-                    <td rowspan="7">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="style2">Price:<asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                    <td class="style2"><strong>Price:</strong><asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="style2">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="style3">Add to cart:</td>
+                    <td class="style3"><strong>Add to cart:</strong></td>
                 </tr>
                 <tr>
                     <td class="style2">
@@ -117,7 +154,54 @@
                     <td class="style2">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="style2">Description:<asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                    <td class="style2"><strong>Description:</strong><asp:BulletedList ID="BulletedList1" runat="server">
+                        </asp:BulletedList>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <table class="style1">
+                <tr>
+                    <td class="auto-style25">
+                        <asp:Image ID="Image3" runat="server" Height="240px" Width="251px" />
+                    </td>
+                    <td class="auto-style25">
+                        <asp:Image ID="Image4" runat="server" Height="240px" Width="251px" />
+                    </td>
+                    <td class="auto-style25">
+                        <asp:Image ID="Image5" runat="server" Height="240px" Width="251px" />
+                    </td>
+                    <td class="auto-style25">
+                        <asp:Image ID="Image6" runat="server" Height="240px" Width="251px" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <asp:Repeater ID="Repeater2" runat="server" >
+                                <HeaderTemplate>
+                                    <table class="rtable" id="tracking2">
+                                        <th>User name</th>
+                                        <th>Comment</th>
+                                        
+                                </HeaderTemplate>
+
+                                <ItemTemplate> 
+                                    
+                                    <tr>
+                                    <td class="rtd"><%#Eval("username") %></td>
+                                    <td class="rtd"><%#Eval("comment") %></td>
+                                    
+                                     
+                                    </tr>
+                                </ItemTemplate> 
+                                <FooterTemplate>
+                                    </table id="tracking2">
+                                </FooterTemplate>
+                                </asp:Repeater>
                     </td>
                 </tr>
             </table>

@@ -32,7 +32,12 @@ public partial class _Default : System.Web.UI.Page
         mySqlConn = new MySqlConnection(connStr);
         mySqlConn.Open();
 
-        bind(itemid);
+    
+        if (!IsPostBack)
+        {
+            bind(itemid);
+
+        }
     }
 
     public void bind(String itemid)
@@ -42,12 +47,36 @@ public partial class _Default : System.Web.UI.Page
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");
 
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select round(AVG(stars),2) as avg_stars from rating where itemid=" + "'" + itemid + "'", mySqlConn);
+        DataSet dataset2 = new DataSet();
+        DataAdapter2.Fill(dataset2, "isi");
+
         pname.Text = dataset.Tables[0].Rows[0]["name"].ToString();
-        Label2.Text = dataset.Tables[0].Rows[0]["category"].ToString();
+        Label2.Text = dataset2.Tables[0].Rows[0]["avg_stars"].ToString();
         Label3.Text = dataset.Tables[0].Rows[0]["price"].ToString();
-        Label4.Text = dataset.Tables[0].Rows[0]["description"].ToString();
-        Image1.ImageUrl =  dataset.Tables[0].Rows[0]["detailphoto"].ToString();
         
+        Image1.ImageUrl = dataset.Tables[0].Rows[0]["thumbnailimage"].ToString();
+        String detailphoto = dataset.Tables[0].Rows[0]["detailphoto"].ToString();
+        String[] detailphotoes = detailphoto.Split(';');
+        Image3.ImageUrl = detailphotoes[0];
+        Image4.ImageUrl = detailphotoes[1];
+        Image5.ImageUrl = detailphotoes[2];
+        Image6.ImageUrl = detailphotoes[3];
+        
+
+        String disc = dataset.Tables[0].Rows[0]["description"].ToString();
+        string[] estr = disc.Split(';');
+
+        for (int i = 0; i < estr.Length; i++) {
+            BulletedList1.Items.Add(estr[i]);
+        }
+
+        MySqlDataAdapter DataAdapter3 = new MySqlDataAdapter("select user.username,review.comment from review,user where itemid=" + "'" + itemid + "' and review.user_id=user.user_id", mySqlConn);
+        DataSet dataset3 = new DataSet();
+        DataAdapter3.Fill(dataset3, "isi");
+
+        Repeater2.DataSource = dataset3;
+        Repeater2.DataBind();
 
     }
     protected void Button2_Click(object sender, EventArgs e)

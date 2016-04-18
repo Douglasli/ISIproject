@@ -12,7 +12,7 @@ public partial class _Default : System.Web.UI.Page
     string poNum = "";
     DataSet dataset1 = new DataSet();
     MySqlConnection conn = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connStr"].ConnectionString);
-    DateTime l14 = new DateTime();
+  //  DateTime l14 = new DateTime();
     DateTime l15 = new DateTime();
     string shipd = "";
     string cand = "";
@@ -41,8 +41,8 @@ public partial class _Default : System.Web.UI.Page
         Int32 l2 = (Int32)re[0];
         Label2.Text = l2.ToString();
 
-        DateTime l4 = (DateTime)re[1];
-        Label4.Text = l4.ToString();
+        String l4 = re[1].ToString();
+        Label4.Text = l4;
 
         Label6.Text = (string)re[2];
         Label8.Text = (string)re[3];
@@ -55,14 +55,13 @@ public partial class _Default : System.Web.UI.Page
 
         if (!Convert.IsDBNull(re[6]))
         {
-            l14 = (DateTime)re[6];
-            shipd = l14.ToString();
+            shipd = re[6].ToString();
+           
         }
 
         if (!Convert.IsDBNull(re[7]))
         {
-            l15 = (DateTime)re[7];
-            cand = l15.ToString();
+            cand = re[7].ToString();
         }
 
         if (!Convert.IsDBNull(re[8]))
