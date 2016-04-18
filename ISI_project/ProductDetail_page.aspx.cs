@@ -57,7 +57,15 @@ public partial class _Default : System.Web.UI.Page
         
         Image1.ImageUrl = dataset.Tables[0].Rows[0]["thumbnailimage"].ToString();
         String detailphoto = dataset.Tables[0].Rows[0]["detailphoto"].ToString();
-        String[] detailphotoes = detailphoto.Split(';');
+        String[] detailphotoes = new string[4];
+        int b = 0;
+        foreach (String a in detailphoto.Split(';')) {
+            detailphotoes[b] = a;
+            b++;
+        }
+        for (int i = 0; i < 4; i++)
+            if (detailphotoes[i] == null)
+                detailphotoes[i] = "";
         Image3.ImageUrl = detailphotoes[0];
         Image4.ImageUrl = detailphotoes[1];
         Image5.ImageUrl = detailphotoes[2];

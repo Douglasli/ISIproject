@@ -24,12 +24,17 @@ public partial class _Default : System.Web.UI.Page
     {
         string folderno = "";
         conn.Open();
-        string sql1 = "select MAX(itemid) from item";
+        string sql1 = "select MAX(itemid) AS itemid from item";
         MySqlCommand com1 = new MySqlCommand(sql1, conn);
         MySqlDataReader re1 = com1.ExecuteReader();
         re1.Read();
-        int num1 = (int)re1[0];
-        num1 = num1 + 1;
+        int num1 = 1;
+        if (!re1.IsDBNull(0))
+        {
+            num1 = (int)re1[0];
+            num1 = num1 + 1;
+        }
+       
         conn.Close();
 
         string fulname = "";
@@ -101,7 +106,7 @@ public partial class _Default : System.Web.UI.Page
         string t4 = "";
         t4 = TextBox4.Text;
 
-        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + t1 + "','" + t2 + "'," + t3 + ",'shoe/" + foname+"/"+ fulname +"','"+ t4 +"','"+ des +"' )";
+        string insertimg = " insert into isi.item ( name, brand, price,thumbnailimage,description,detailphoto) values ('" + t1 + "','" + t2 + "'," + t3 + ",'shoe/" + foname+"/"+ "0.jpg" +"','"+ t4 +"','"+ des +"' )";
 
         
         MySqlCommand cmd2 = new MySqlCommand(insertimg, conn);

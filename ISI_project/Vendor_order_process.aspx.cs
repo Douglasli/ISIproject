@@ -145,12 +145,23 @@ public partial class _Default : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         poNum = Request.QueryString["poNum"];
-        DateTime da = new DateTime();
-        da = DateTime.Now;
+        String da = "";
+        da = DateTime.Now.Date.ToString("yyyy-MM-dd"); ;
         conn.Open();
         string st = "update isi.orders set status='shipped',shipDate='" + da + "' where poNum= " + poNum;
         MySqlCommand cmd1 = new MySqlCommand(st,conn);
         cmd1.ExecuteNonQuery();
+        //notification
+        string sql = "select uid from orders where poNum='" + poNum + "'";
+        MySqlDataAdapter ada = new MySqlDataAdapter(sql, conn);
+        DataSet dataset = new DataSet();
+        ada.Fill(dataset, "isi");
+        int uid = int.Parse(dataset.Tables[0].Rows[0]["uid"].ToString());
+
+        String notify = "Your order<" + poNum + "> has already shipped!";
+        string str = "insert into notification (user_id,content,status) values ('" + uid + "','" + notify + "','1')";
+        MySqlCommand cmd2 = new MySqlCommand(str, conn);
+        cmd2.ExecuteNonQuery();
         conn.Close();
 
         try
@@ -169,6 +180,17 @@ public partial class _Default : System.Web.UI.Page
         string st = "update isi.orders set status='hold' where poNum= " + poNum;
         MySqlCommand cmd1 = new MySqlCommand(st, conn);
         cmd1.ExecuteNonQuery();
+        //notification
+        string sql = "select uid from orders where poNum='" + poNum + "'";
+        MySqlDataAdapter ada = new MySqlDataAdapter(sql, conn);
+        DataSet dataset = new DataSet();
+        ada.Fill(dataset, "isi");
+        int uid = int.Parse(dataset.Tables[0].Rows[0]["uid"].ToString());
+
+        String notify = "Your order<" + poNum + "> has been changed to hold!";
+        string str = "insert into notification (user_id,content,status) values ('" + uid + "','" + notify + "','1')";
+        MySqlCommand cmd2 = new MySqlCommand(str, conn);
+        cmd2.ExecuteNonQuery();
         conn.Close();
 
         try
@@ -183,13 +205,24 @@ public partial class _Default : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
         poNum = Request.QueryString["poNum"];
-        DateTime da = new DateTime();
-        da = DateTime.Now;
+        String da = "";
+        da = DateTime.Now.Date.ToString("yyyy-MM-dd"); ;
 
         conn.Open();
         string st = "update isi.orders set status='shipped',shipDate='"+da+"' where poNum= " + poNum;
         MySqlCommand cmd1 = new MySqlCommand(st, conn);
         cmd1.ExecuteNonQuery();
+
+        string sql = "select uid from orders where poNum='" + poNum + "'";
+        MySqlDataAdapter ada = new MySqlDataAdapter(sql, conn);
+        DataSet dataset = new DataSet();
+        ada.Fill(dataset, "isi");
+        int uid = int.Parse(dataset.Tables[0].Rows[0]["uid"].ToString());
+
+        String notify = "Your order<" + poNum + "> has already shipped!";
+        string str = "insert into notification (user_id,content,status) values ('" + uid + "','" + notify + "','1')";
+        MySqlCommand cmd2 = new MySqlCommand(str, conn);
+        cmd2.ExecuteNonQuery();
         conn.Close();
 
         try
@@ -205,12 +238,23 @@ public partial class _Default : System.Web.UI.Page
     {
         poNum = Request.QueryString["poNum"];
         string canType = (string)Session["usertype"];
-        DateTime da = new DateTime();
-        da = DateTime.Now;
+        String da = "";
+        da = DateTime.Now.Date.ToString("yyyy-MM-dd"); 
         conn.Open();
-        string st = "update isi.orders set status='canceled',canDate='"+da+"',canType='"+canType+"' where poNum= " + poNum;
+        string st = "update isi.orders set status='canceled',canDate='"+da+"',canType='"+canType+"' where poNum= " + poNum+";";
         MySqlCommand cmd1 = new MySqlCommand(st, conn);
         cmd1.ExecuteNonQuery();
+
+        string sql = "select uid from orders where poNum='" + poNum + "'";
+        MySqlDataAdapter ada = new MySqlDataAdapter(sql, conn);
+        DataSet dataset = new DataSet();
+        ada.Fill(dataset, "isi");
+        int uid = int.Parse(dataset.Tables[0].Rows[0]["uid"].ToString());
+
+        String notify = "Your order<" + poNum + "> has already canceled!";
+        string str = "insert into notification (user_id,content,status) values ('" + uid + "','" + notify + "','1')";
+        MySqlCommand cmd2 = new MySqlCommand(str, conn);
+        cmd2.ExecuteNonQuery();
         conn.Close();
 
         try
