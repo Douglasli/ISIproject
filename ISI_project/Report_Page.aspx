@@ -89,7 +89,7 @@
                 <img src="/images/calender.png" />
                 <asp:TextBox ID="TextBox2" runat="server">30</asp:TextBox>
                 <asp:Button ID="Filter" runat="server" Text="Sort by salesamount" OnClick="Filter_Click" />
-                <asp:Button ID="Filter" runat="server" Text="Sort by salesquantities" OnClick="Filter_Click" />
+                <asp:Button ID="Filter2" runat="server" Text="Sort by salesquantities" OnClick="Filter2_Click" />
             </div>
             &nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
