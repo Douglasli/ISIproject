@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            String sql1 = "SELECT item.itemid,item.name,SUM(orderitem.quantity) AS salesquantities,SUM(orderitem.price*orderitem.quantity) AS salesamount FROM orders,orderitem,item WHERE orders.ponum=orderitem.ponum AND item.itemid=orderitem.itemid AND purchaseDate BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE() GROUP BY item.itemid ORDER BY salesamount,salesquantities DESC;";
+            String sql1 = "SELECT item.itemid,item.name,SUM(orderitem.quantity) AS salesquantities,SUM(orderitem.price*orderitem.quantity) AS salesamount FROM orders,orderitem,item WHERE orders.ponum=orderitem.ponum AND item.itemid=orderitem.itemid AND purchaseDate BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE() GROUP BY item.itemid ORDER BY salesamount,salesquantities  LIMIT 10;";
             conn.Open();
             MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
             ada1.Fill(dataset1, "isi");
@@ -60,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
     protected void Filter_Click(object sender, EventArgs e)
     { string enddate = DateTime.Parse(Request.Form[TextBox1.UniqueID]).Date.ToString("dd/MM/yyyy");
         string period = TextBox2.Text;
-        String sql1 = "SELECT item.itemid,item.name,SUM(orderitem.quantity) AS salesquantities,SUM(orderitem.price*orderitem.quantity) AS salesamount FROM orders,orderitem,item WHERE orders.ponum=orderitem.ponum AND item.itemid=orderitem.itemid AND purchaseDate BETWEEN "+enddate+" - INTERVAL "+period+" DAY AND " + enddate + " GROUP BY item.itemid ORDER BY salesamount,salesquantities DESC;";
+        String sql1 = "SELECT item.itemid,item.name,SUM(orderitem.quantity) AS salesquantities,SUM(orderitem.price*orderitem.quantity) AS salesamount FROM orders,orderitem,item WHERE orders.ponum=orderitem.ponum AND item.itemid=orderitem.itemid AND purchaseDate BETWEEN "+enddate+" - INTERVAL "+period+" DAY AND " + enddate + " GROUP BY item.itemid ORDER BY salesamount,salesquantities  LIMIT 10;";
         conn.Open();
         MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
         ada1.Fill(dataset1, "isi");
@@ -69,5 +69,17 @@ public partial class _Default : System.Web.UI.Page
         GridView1.DataBind();
         conn.Close();
     }
-
+    
+    protected void Filter_Click(object sender, EventArgs e)
+    { string enddate = DateTime.Parse(Request.Form[TextBox1.UniqueID]).Date.ToString("dd/MM/yyyy");
+        string period = TextBox2.Text;
+        String sql1 = "SELECT item.itemid,item.name,SUM(orderitem.quantity) AS salesquantities,SUM(orderitem.price*orderitem.quantity) AS salesamount FROM orders,orderitem,item WHERE orders.ponum=orderitem.ponum AND item.itemid=orderitem.itemid AND purchaseDate BETWEEN "+enddate+" - INTERVAL "+period+" DAY AND " + enddate + " GROUP BY item.itemid ORDER BY salesquantities,salesamount LIMIT 10;";
+        conn.Open();
+        MySqlDataAdapter ada1 = new MySqlDataAdapter(sql1, conn);
+        ada1.Fill(dataset1, "isi");
+        GridView1.DataSource = dataset1;
+        GridView1.DataKeyNames = new String[] { "name" };
+        GridView1.DataBind();
+        conn.Close();
+    }
 }

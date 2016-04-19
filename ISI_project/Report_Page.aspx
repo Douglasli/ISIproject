@@ -88,7 +88,8 @@
                 <asp:TextBox ID="TextBox1" runat="server" ReadOnly="true" >End Date</asp:TextBox>
                 <img src="/images/calender.png" />
                 <asp:TextBox ID="TextBox2" runat="server">30</asp:TextBox>
-                <asp:Button ID="Filter" runat="server" Text="Filter" OnClick="Filter_Click" />
+                <asp:Button ID="Filter" runat="server" Text="Sort by salesamount" OnClick="Filter_Click" />
+                <asp:Button ID="Filter" runat="server" Text="Sort by salesquantities" OnClick="Filter_Click" />
             </div>
             &nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -98,8 +99,8 @@
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="product_detail_vender.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show  Detail" />
                     <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />
-                    <asp:BoundField DataField="salesamount" HeaderText="Sales Quantities " />
-                    <asp:BoundField DataField="salesquantities" HeaderText="Sales Amount" />
+                    <asp:BoundField DataField="salesamount" HeaderText="Sales Amount " />
+                    <asp:BoundField DataField="salesquantities" HeaderText="Sales quantities" />
                 </Columns>
             </asp:GridView>
             &nbsp;&nbsp;
