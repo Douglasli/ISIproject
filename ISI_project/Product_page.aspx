@@ -49,7 +49,7 @@
 
     </script>
 </head>
-<body style="background-image: url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image: url('/images/backlogin.jpg'); height: 100%;">
     <form id="form1" runat="server">
         <div style="width: 100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
             <table style="width: 100%; height: 100%;">
@@ -80,7 +80,7 @@
             </table>
 
         </div>
-        <div id="div1" style="width: 100%; height: 1062px; background-color: rgba(255,255,255,0.5);">
+        <div id="div1" style="width: 100%; height:  100%; background-color: rgba(255,255,255,0.5); text-align: center;">
             <hr />
             <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
             <asp:Button ID="Search" runat="server" Height="36px" OnClick="Search_Click" Text="search" Width="73px" />
@@ -90,7 +90,8 @@
             &nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <br />
-            <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" OnSorting="GridView2_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" AutoGenerateColumns="False">
+            &nbsp;&nbsp;&nbsp;
+            <asp:GridView ID="GridView1" runat="server" Height="266px" Style="margin-top: 54px" Width="560px" AllowPaging="True" AllowSorting="True" OnSorting="GridView2_Sorting" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" AutoGenerateColumns="False" HorizontalAlign="Center">
                 <Columns>
                     <asp:HyperLinkField DataNavigateUrlFields="itemid" DataNavigateUrlFormatString="ProductDetail_page.aspx?id={0}" DataTextField="itemid" HeaderText="Show Detail" DataTextFormatString="Show  Detail" />
                     <asp:BoundField DataField="name" HeaderText="Item name" ReadOnly="true" />

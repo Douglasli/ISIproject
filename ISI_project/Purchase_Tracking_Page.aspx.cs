@@ -39,7 +39,7 @@ public partial class _Default : System.Web.UI.Page
     {
         Repeater1.Visible = true;
         Repeater2.Visible = false;
-        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * item.price) as total from orders, item, orderitem where uid=" + "'" + uid + "' AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
+        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * orderitem.price) as total from orders, item, orderitem where uid=" + "'" + uid + "' AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql, mySqlConn);
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");
@@ -59,7 +59,7 @@ public partial class _Default : System.Web.UI.Page
     {
         Repeater1.Visible = true;
         Repeater2.Visible = false;
-        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * item.price) as total from orders, item, orderitem  where uid=" + "'" + Session["uid"].ToString() + "' and (status='pending' or status = 'hold')  AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
+        String sql = "select orders.poNum,purchaseDate,status,uid, SUM(orderitem.quantity * orderitem.price) as total from orders, item, orderitem  where uid=" + "'" + Session["uid"].ToString() + "' and (status='pending' or status = 'hold')  AND orders.ponum=orderitem.ponum AND orderitem.itemid = item.itemid GROUP BY orders.poNum";
         MySqlDataAdapter DataAdapter1 = new MySqlDataAdapter(sql, mySqlConn);
         DataSet dataset = new DataSet();
         DataAdapter1.Fill(dataset, "isi");

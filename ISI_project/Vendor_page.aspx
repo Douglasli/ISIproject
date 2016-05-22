@@ -48,7 +48,7 @@
 
     </script>
     </head>
-<body style="background-image:url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image:url('/images/backlogin.jpg'); height: 100%;">
     <form id="form1" runat="server">
     <div style="width:100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
         <table style="width:100%; height: 100%;">
@@ -76,12 +76,12 @@
         </table>
 
         </div>
-    <div id="div1" style="width:100%;height: 511px; background-color: rgba(255,255,255,0.5);">
+    <div id="div1" style="width:100%;height: 100%; background-color: rgba(255,255,255,0.5); text-align: center;">
         <hr />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TextBox1" runat="server" Height="31px" Width="172px"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Height="36px" OnClick="Button1_Click" Text="search by name" Width="180px" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" Height="35px" OnClick="Button2_Click" Text="Show all brand" Width="158px" />
         <br />
         <asp:TextBox ID="TextBox3" runat="server" Height="31px" Width="172px"></asp:TextBox>
         <asp:Button ID="Button4" runat="server" Height="36px" OnClick="Button4_Click" Text="search by id" Width="180px" />
@@ -90,7 +90,7 @@
         <br />
         <asp:Button ID="add" runat="server" Height="45px"  Text="Add a new product" Width="153px" OnClick="add_Click" />
         <asp:Button ID="Button3" runat="server" Height="40px" OnClick="Button3_Click" Text="show all order" Width="199px" />
-        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" >
+        <asp:GridView ID="GridView1" runat="server" Height="266px" style="margin-top: 54px" Width="560px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging" PageSize="4" HorizontalAlign="Center" >
         </asp:GridView>
         <asp:Button ID="pre" runat="server" Height="30px"  Text="Previous Page" Width="150px" OnClick="pre_Click" />
 &nbsp;&nbsp;

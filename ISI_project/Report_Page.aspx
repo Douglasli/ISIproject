@@ -82,9 +82,7 @@
 
         </div>
         <div id="div1" style="width: 100%; height: 1062px; background-color: rgba(255,255,255,0.5);">
-            This page show the top 10 sales item.
-
-            <hr /><div id="form2" runat="server">
+           <hr /><div id="form2" runat="server">
                 <asp:TextBox ID="TextBox1" runat="server" ReadOnly="true" >End Date</asp:TextBox>
                 <img src="/images/calender.png" />
                 <asp:TextBox ID="TextBox2" runat="server">30</asp:TextBox>

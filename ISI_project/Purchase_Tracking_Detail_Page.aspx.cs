@@ -63,7 +63,7 @@ public partial class _Default : System.Web.UI.Page
         GridView1.DataSource = dataset;
         GridView1.DataKeyNames = new string[] { "poNum" };
         GridView1.DataBind();
-        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,item.price,orderitem.quantity * item.price as total  from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
+        MySqlDataAdapter DataAdapter2 = new MySqlDataAdapter("select orderitem.poNum,orderitem.itemid,orderitem.quantity,orderitem.price,orderitem.quantity * orderitem.price as total  from orderitem,item where poNum=" + "'" + poNum + "'and item.itemid=orderitem.itemid", mySqlConn);
         DataSet dataset2 = new DataSet();
         DataAdapter2.Fill(dataset2, "isi");
 

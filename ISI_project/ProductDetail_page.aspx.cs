@@ -53,6 +53,12 @@ public partial class _Default : System.Web.UI.Page
 
         pname.Text = dataset.Tables[0].Rows[0]["name"].ToString();
         Label2.Text = dataset2.Tables[0].Rows[0]["avg_stars"].ToString();
+        double rate2 = double.Parse(Label2.Text);
+        if (rate2 > 2) {
+                Label6.Visible = false;
+        }
+
+        
         Label3.Text = dataset.Tables[0].Rows[0]["price"].ToString();
         
         Image1.ImageUrl = dataset.Tables[0].Rows[0]["thumbnailimage"].ToString();

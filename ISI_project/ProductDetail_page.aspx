@@ -84,7 +84,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('/images/backlogin.jpg'); height: 565px;">
+<body style="background-image: url('/images/backlogin.jpg'); height: 100%;">
     <form id="form1" runat="server">
         <div style="width: 100%; height: 50px; background-color: rgba(255,255,255,0.5); text-align: justify;">
             <table style="width: 100%; height: 100%;">
@@ -114,7 +114,7 @@
             </table>
 
         </div>
-        <div style="width: 100%; height: 762px; background-color: rgba(255,255,255,0.5);">
+        <div style="width: 100%; height: 100%; background-color: rgba(255,255,255,0.5);">
             <hr />
             <br />
             <br />
@@ -127,11 +127,12 @@
             </table>
             <table class="style1">
                 <tr>
-                    <td class="style5" rowspan="7">
+                    <td class="style5" rowspan="7" style="text-align: center">
                         <asp:Image ID="Image1" runat="server" Height="240px" Width="251px" />
                     </td>
                     <td class="style2"><strong>Average Rating:</strong><asp:Label ID="Label2" runat="server" Text="0" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
                         <asp:Image ID="Image2" runat="server" ImageUrl="~/images/85-jishiejs (1308).png" />
+                        <asp:Label ID="Label6" runat="server" Font-Bold="True" ForeColor="Red" Text="Average rating is low than 2"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -162,16 +163,16 @@
             <br />
             <table class="style1">
                 <tr>
-                    <td class="auto-style25">
+                    <td class="auto-style25" style="text-align: center">
                         <asp:Image ID="Image3" runat="server" Height="240px" Width="251px" />
                     </td>
-                    <td class="auto-style25">
+                    <td class="auto-style25" style="text-align: center">
                         <asp:Image ID="Image4" runat="server" Height="240px" Width="251px" />
                     </td>
-                    <td class="auto-style25">
+                    <td class="auto-style25" style="text-align: center">
                         <asp:Image ID="Image5" runat="server" Height="240px" Width="251px" />
                     </td>
-                    <td class="auto-style25">
+                    <td class="auto-style25" style="text-align: center">
                         <asp:Image ID="Image6" runat="server" Height="240px" Width="251px" />
                     </td>
                 </tr>
@@ -180,7 +181,7 @@
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td colspan="4" style="text-align: center">
                         <asp:Repeater ID="Repeater2" runat="server" >
                                 <HeaderTemplate>
                                     <table class="rtable" id="tracking2">
